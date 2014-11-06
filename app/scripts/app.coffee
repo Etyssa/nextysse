@@ -34,3 +34,5 @@ angular
         controller: 'AboutCtrl'
       .otherwise
         redirectTo: '/'
+
+$(document).foundation()

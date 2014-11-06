@@ -16,26 +16,64 @@
     <link rel="stylesheet" href="styles/app.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="seminaire2014App">
-    <!--[if lt IE 7]>
+  <body ng-app="seminaire2014App">    <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Search</a></li>
-          <li><a ng-href="#/overview">Overview</a></li>
-          <li><a ng-href="#/about">About</a></li>
-        </ul>
-        <h3 class="text-muted">Etyssa</h3>
+    <div class="header">
+      <ul class="nav nav-pills pull-right">
+        <li class="active"><a ng-href="#">Home</a></li>
+        <li><a ng-href="#/overview">Overview</a></li>
+        <li><a ng-href="#/about">About</a></li>
+      </ul>
+      <h3 class="text-muted"><a href="/">Etyssa</a></h3>
+    </div>
+
+    <div class="fixed">
+      <nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#">My Site</a></h1>
+    </li>
+    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li class="active"><a href="#">Right Button Active</a></li>
+      <li class="has-dropdown">
+              <a href="#">Right Button Dropdown</a>
+              <ul class="dropdown">
+    <li><a href="#">First link in dropdown</a></li>
+          <li class="active"><a href="#">Active link in dropdown</a></li>
+              </ul>
+      </li>
+    </ul>
+    
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <li><a href="#">Left Nav Button</a></li>
+    </ul>
+  </section>
+      </nav>
+    </div>
+
+    <div class="row">
+      <div class="small-2 columns">
+  <img src="images/logo.png">
       </div>
-      <div ng-view=""></div>
-      <div class="footer">
-        <p>Built with <span class="fa fa-heart"></span> by the Etyssa team</p>
+      <div class="small-10 columns">
+  <div ng-view=""></div>
       </div>
     </div>
+    
+    <div class="footer">
+      <p>Built with <span class="fa fa-heart"></span> by the Etyssa team</p>
+    </div>  
+    
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -71,6 +109,7 @@
     <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
     <script src="bower_components/jquery-placeholder/jquery.placeholder.js"></script>
     <script src="bower_components/foundation/js/foundation.js"></script>
+    <script src="bower_components/foundation/js/foundation.topbar.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -82,5 +121,7 @@
         <script src="scripts/poc/about.js"></script>
 
         <!-- endbuild -->
+
+
 </body>
 </html>
