@@ -8,12 +8,12 @@
 <div class="jumbotron" ng-if="results.length == 0">
   no results
 </div>
-<div class="jumbotron" ng-if="results.length > 0">
-  <div ng-repeat="result in results">{{ result.smartTitle }}</div>
+<div ng-if="results.length > 0">
+  <div ng-repeat="result in results">
+    <a ng-href="#/entry/{{ result.id }}">{{ result.smartTitle }}</a></div>
 </div>
 
   <div>
-    Service name: {{ service.nickname }}
     <form
       name      = "searchForm"
       ng-submit = "search(selected_category)">

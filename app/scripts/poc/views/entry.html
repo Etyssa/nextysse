@@ -1,0 +1,7 @@
+<h2>[{{ entry.category }}] {{ entry.smartTitle }}</h2>
+
+par {{ user.nickname }} le {{ entry.creationDate }}
+<pre>
+{{ entry | json }}
+{{ user  | json }}
+</pre>

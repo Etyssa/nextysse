@@ -23,6 +23,9 @@ angular
       .when '/',
         templateUrl: 'scripts/poc/views/main.html'
         controller: 'MainCtrl'
+      .when '/entry/:id',
+        templateUrl: 'scripts/poc/views/entry.html'
+        controller: 'EntryCtrl'
       .when '/about',
         templateUrl: 'scripts/poc/views/about.html'
         controller: 'AboutCtrl'

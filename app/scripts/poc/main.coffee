@@ -14,8 +14,6 @@ angular.module('seminaire2014App')
       $scope.results = Search.query {cat: selected_category}
 
     # loads data and provide them to the scope
-    # Categories.query (data) -> $scope.categories = data
-    # Services  .query (data) -> $scope.service    = data
     $scope.categories = Categories .query()
     $scope.service    = Services   .query()
   ])
