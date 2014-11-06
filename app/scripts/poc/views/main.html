@@ -1,0 +1,22 @@
+<div class="jumbotron" ng-if="results == undefined || results.length == 0">
+  <img src="images/logo.png"><br>
+  <h1>Proof of Concept</h1>
+  <p class="lead">
+    Allways there to impress chicks.
+  </p>
+</div>
+<div class="jumbotron" ng-if="results.length > 0">
+  <div ng-repeat="result in results">{{ result }}</div>
+</div>
+
+  <div>
+    Service name: {{ service.nickname }}
+    <form ng-submit = "search(selected_category)">
+      <select 
+        ng-model   = "selected_category" 
+        ng-options = "cat.alias as cat.title for cat in categories">
+      </select>
+      <input type="text" ng-model="query" />
+      <input type="submit" />
+    </form>
+  </div>
