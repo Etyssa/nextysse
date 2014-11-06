@@ -20,5 +20,10 @@
     "angular-mocks": "~1.2.0",
     "angular-scenario": "~1.2.0"
   },
+  "overrides": {
+    "foundation": {
+      "main": "js/foundation.min.js"
+    }
+  },
   "appPath": "app"
 }

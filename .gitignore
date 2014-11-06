@@ -5,3 +5,4 @@ dist
 bower_components
 fabfile.py
 *.pyc
+Seminaire2014*.tar.bz2
