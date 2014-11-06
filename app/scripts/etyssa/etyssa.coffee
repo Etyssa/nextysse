@@ -8,7 +8,12 @@
 ETYSSA_API_TOKEN = "35d4c695-7286-47bd-a5d0-686d42c28e40"
 angular.module('etyssa', [])
   .factory('Services',   ["$resource", ($resource) ->
-    $resource 'http://api.scriptysse.fr:8080/rest/services/:service_name/?token=:token'            , {token:ETYSSA_API_TOKEN}, {}
+    $resource 'http://api.scriptysse.fr:8080/rest/services/:service_name/?token=:token'            , {token:ETYSSA_API_TOKEN}, {
+      query :
+        method            : "GET"
+        isArray           : yes
+        transformResponse : (data, headersGetter) -> return angular.fromJson(data).services
+    }
   ])
   .factory('Categories', ["$resource", ($resource) ->
     $resource 'http://api.scriptysse.fr:8080/rest/services/argentan/categories?token=:token'       , {token:ETYSSA_API_TOKEN}, {}
