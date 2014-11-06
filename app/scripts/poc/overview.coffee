@@ -24,8 +24,8 @@ angular.module('seminaire2014App')
         # scrollWheelZoom : false
         # crs             : 'Simple'
         # maxZoom         : 2
-      tiles:
-        url: "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+      # tiles:
+      #   url: "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
       markers: {}
 
     Services.query (data) ->
