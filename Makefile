@@ -6,11 +6,11 @@
 PROJECT_NAME = "Seminaire2014"
 RM           = rm -fr
 MV           = mv -f
-DEBUG        = True
-HOST         = "http://localhost:9000"
 DIST_DIR     = "dist/"
 TIMESTAMP    = $(shell date "+%Y-%m-%d")
 GRUNT        = grunt
+BOWER        = bower
+NPM          = npm
 
 run: clean
 	$(GRUNT) serve
@@ -20,9 +20,8 @@ clean:
 	$(RM) $(CACHE)
 
 install:
-	virtualenv venv --no-site-packages --distribute --prompt=$(PROJECT_NAME)
-	. `pwd`/.env ; pip install -r requirements.txt
-	. `pwd`/.env ; npm install
+	$(NPM) install
+	$(BOWER) install
 	@echo "installed"
 
 freeze: clean
