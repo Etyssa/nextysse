@@ -1,4 +1,4 @@
-// Generated on 2014-11-05 using generator-angular 0.9.8
+// Generated on 2014-11-06 using generator-angular 0.9.8
 'use strict';
 
 // # Globbing
@@ -41,9 +41,9 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}'],
         tasks: ['newer:coffee:test', 'karma']
       },
-      styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
+      sass: {
+        files: '<%= yeoman.app %>/styles/**/*.scss',
+        tasks: ['sass']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -156,6 +156,25 @@ module.exports = function (grunt) {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
         ignorePath:  /\.\.\//
+      },
+      sass: {
+        src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        ignorePath: /(\.\.\/){1,2}bower_components\//
+      }
+    },
+
+    // Compiles sass to css
+    sass: {
+      options: {
+        includePaths: ['bower_components/foundation/scss']
+      },
+      dist: {
+        options: {
+          outputStyle: 'compressed'
+        },
+        files: {
+          '.tmp/styles/app.css': '<%= yeoman.app %>/styles/app.scss'
+        }
       }
     },
 
@@ -224,32 +243,6 @@ module.exports = function (grunt) {
         assetsDirs: ['<%= yeoman.dist %>','<%= yeoman.dist %>/images']
       }
     },
-
-    // The following *-min tasks will produce minified files in the dist folder
-    // By default, your `index.html`'s <!-- Usemin block --> will take care of
-    // minification. These next options are pre-configured if you do not wish
-    // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
 
     imagemin: {
       dist: {
@@ -332,11 +325,6 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
-        }, {
-          expand: true,
-          cwd: 'bower_components/bootstrap/dist',
-          src: 'fonts/*',
-          dest: '<%= yeoman.dist %>'
         }]
       },
       styles: {
@@ -351,15 +339,15 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'coffee:dist',
-        'copy:styles'
+        'sass'
       ],
       test: [
         'coffee',
-        'copy:styles'
+        'sass'
       ],
       dist: [
         'coffee',
-        'copy:styles',
+        'sass',
         'imagemin',
         'svgmin'
       ]

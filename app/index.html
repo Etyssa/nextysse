@@ -8,11 +8,12 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/foundation/css/foundation.css" />
+    <link rel="stylesheet" href="bower_components/font-awsome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="scripts/poc/styles/main.css">
+    <!-- build:css(.tmp) styles/app.css -->
+    <link rel="stylesheet" href="styles/app.css">
     <!-- endbuild -->
   </head>
   <body ng-app="seminaire2014App">
@@ -28,13 +29,12 @@
           <li><a ng-href="#/about">About</a></li>
         </ul>
         <h3 class="text-muted">Etyssa</h3>
-
       </div>
 
       <div ng-view=""></div>
-
+      <button>coucou</button>
       <div class="footer">
-        <p>Built with <span class="glyphicon glyphicon-heart"></span> by the Etyssa team</p>
+        <p>Built with <span class="fa fa-heart"></span> by the Etyssa team</p>
       </div>
     </div>
 
@@ -59,15 +59,19 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
+    <script src="bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+    <script src="bower_components/foundation/js/foundation.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -77,6 +81,7 @@
         <script src="scripts/poc/main.js"></script>
         <script src="scripts/poc/entry.js"></script>
         <script src="scripts/poc/about.js"></script>
+
         <!-- endbuild -->
 </body>
 </html>
