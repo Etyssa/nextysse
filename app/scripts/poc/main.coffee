@@ -11,12 +11,7 @@ angular.module('seminaire2014App')
   .controller('MainCtrl', ["$scope", "Services", "Categories", "Search", ($scope, Services, Categories, Search) ->
 
     $scope.search = (selected_category) ->
-      return $scope.results = [
-        "bla"
-        "blu"
-        "bli"]
-      Search.query {cat: selected_category}, (data) ->
-        console.log data
+      $scope.results = Search.query {cat: selected_category}
 
     # loads data and provide them to the scope
     # Categories.query (data) -> $scope.categories = data
