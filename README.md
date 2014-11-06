@@ -1,0 +1,4 @@
+# Contributors
+* doud
+* yéyé
+* smonff
