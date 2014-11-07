@@ -4,24 +4,35 @@
     Allways there to impress chicks and dicks.
   </p>
 </div>
-<div class="jumbotron" ng-if="results.length == 0">
-  no results
-</div>
-<div ng-if="results.length > 0">
-  <div ng-repeat="result in results">
-    <a ng-href="#/entry/{{ result.id }}" ng-bind-html="result.smartTitle"></a></div>
+
+<div>
+  <form
+    name = "searchForm">
+    <select
+      ng-model   = "search_params.selected_category" 
+      ng-change  = "category_selected()"
+      ng-options = "cat as cat.title for cat in categories">
+    </select>
+    <div ng-if="search_params.selected_category">
+      <label ng-repeat="motivation in search_params.selected_category.motivations">
+        <input
+          type            = "checkbox" 
+          name            = "motivations"
+          checklist-model = "search_params.motivations_selected"
+          checklist-value = "motivation"/>
+        <span ng-bind-html = "motivation.label"></span>
+      </label>
+    </div>
+  </form>
 </div>
 
-  <div>
-    <form
-      name      = "searchForm"
-      ng-submit = "search(selected_category)">
-      <select 
-        ng-model   = "selected_category" 
-        ng-change  = "search(selected_category)"
-        ng-options = "cat.alias as cat.title for cat in categories">
-      </select>
-      <!-- <input type="text" ng-model="query" /> -->
-      <input type="submit" />
-    </form>
+<div class="jumbotron" ng-show="results.length == 0">
+  no results
+</div>
+
+<div ng-if="results.length > 0">
+  {{ results.length }} results
+  <div ng-repeat="result in results">
+    <a ng-href="#/entry/{{ result.id }}" ng-bind-html="result.smartTitle"></a>
   </div>
+</div>

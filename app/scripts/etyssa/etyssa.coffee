@@ -16,16 +16,16 @@ angular.module('etyssa', ["etyssa.config"])
     }
   ])
   .factory('Categories', ["$resource", "GENERAL_CONFIG", ($resource, GENERAL_CONFIG) ->
-    $resource "#{GENERAL_CONFIG.API_HOST}/rest/services/issy/categories?token=:token"     , {token:GENERAL_CONFIG.ETYSSA_API_TOKEN}, {}
+    $resource "#{GENERAL_CONFIG.API_HOST}/rest/services/issy/categories?token=:token"       , {token:GENERAL_CONFIG.ETYSSA_API_TOKEN}, {}
   ])
   .factory('Search',     ["$resource", "GENERAL_CONFIG", ($resource, GENERAL_CONFIG) ->
-    $resource "#{GENERAL_CONFIG.API_HOST}/rest/services/issy/search?cat=:cat&token=:token", {token:GENERAL_CONFIG.ETYSSA_API_TOKEN}, {}
+    $resource "#{GENERAL_CONFIG.API_HOST}/rest/services/issy/search?cat=:cat&token=:token"  , {token:GENERAL_CONFIG.ETYSSA_API_TOKEN}, {}
   ])
-  .factory('Entry',      ["$resource", "GENERAL_CONFIG", ($resource, GENERAL_CONFIG) ->
-    $resource "#{GENERAL_CONFIG.API_HOST}/rest/entries/:entry_id?token=:token"            , {token:GENERAL_CONFIG.ETYSSA_API_TOKEN}, {}
+  .factory('Entries',    ["$resource", "GENERAL_CONFIG", ($resource, GENERAL_CONFIG) ->
+    $resource "#{GENERAL_CONFIG.API_HOST}/rest/services/issy/entries/:entry_id?token=:token", {token:GENERAL_CONFIG.ETYSSA_API_TOKEN}, {}
   ])
-  .factory('User',      ["$resource", "GENERAL_CONFIG", ($resource, GENERAL_CONFIG) ->
-    $resource "#{GENERAL_CONFIG.API_HOST}/rest/users/:user_id?token=:token"               , {token:GENERAL_CONFIG.ETYSSA_API_TOKEN}, {}
+  .factory('User',      ["$resource", "GENERAL_CONFIG", ($resource, GENERAL_CONFIG)  ->
+    $resource "#{GENERAL_CONFIG.API_HOST}/rest/services/issy/users/:user_id?token=:token"   , {token:GENERAL_CONFIG.ETYSSA_API_TOKEN}, {}
   ])
 
 # EOF

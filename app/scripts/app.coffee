@@ -10,14 +10,15 @@
 ###
 angular
   .module('seminaire2014App', [
-    'etyssa',
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch',
+    'etyssa'
+    'ngAnimate'
+    'ngCookies'
+    'ngResource'
+    'ngRoute'
+    'ngSanitize'
+    'ngTouch'
     'leaflet-directive'
+    'checklist-model'
   ])
   .config ($routeProvider) ->
     $routeProvider
