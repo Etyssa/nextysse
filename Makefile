@@ -12,12 +12,11 @@ GRUNT        = grunt
 BOWER        = bower
 NPM          = npm
 
-run: clean
+run:
 	$(GRUNT) serve
 
 clean:
 	$(GRUNT) clean
-	$(RM) $(CACHE)
 
 install:
 	$(NPM) install

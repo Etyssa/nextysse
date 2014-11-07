@@ -41,7 +41,7 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}'],
         tasks: ['newer:coffee:test', 'karma']
       },
-      sass: {
+      styles: {
         files: '<%= yeoman.app %>/styles/**/*.scss',
         tasks: ['sass']
       },
@@ -328,7 +328,7 @@ module.exports = function (grunt) {
           src: ['generated/*']
         }]
       },
-      styles: {
+      sass: {
         expand: true,
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
@@ -362,7 +362,6 @@ module.exports = function (grunt) {
       }
     }
   });
-
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
