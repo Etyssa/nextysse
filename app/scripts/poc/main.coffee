@@ -14,5 +14,5 @@ angular.module('seminaire2014App')
 
     # loads data and provide them to the scope
     $scope.categories = Categories .query()
-    $scope.service    = Services   .get({service_name: "argentan"})
+    $scope.service    = Services   .get({service_name: "issy"})
   ])

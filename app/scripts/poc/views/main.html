@@ -9,7 +9,7 @@
 </div>
 <div ng-if="results.length > 0">
   <div ng-repeat="result in results">
-    <a ng-href="#/entry/{{ result.id }}">{{ result.smartTitle }}</a></div>
+    <a ng-href="#/entry/{{ result.id }}" ng-bind-html="result.smartTitle"></a></div>
 </div>
 
   <div>
