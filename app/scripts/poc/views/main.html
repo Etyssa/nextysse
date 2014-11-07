@@ -32,6 +32,9 @@
 
 <div ng-if="results.length > 0">
   {{ results.length }} results
+
+  <leaflet width="640px" height="480px" defaults="defaults" center="center" markers="markers"></leaflet>
+
   <div ng-repeat="result in results">
     <a ng-href="#/entry/{{ result.id }}" ng-bind-html="result.smartTitle"></a>
   </div>

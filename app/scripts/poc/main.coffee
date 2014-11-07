@@ -37,6 +37,20 @@ angular.module('seminaire2014App')
     # loads data and provide them to the scope
     $scope.service    = Services   .get({service_name: "issy"})
     $scope.categories = Categories .query()
+
+    # map
+    angular.extend $scope,
+      center  : { lat: 48.82268881260476, lng:2.2460174560546875, zoom: 12 }
+      markers : {}
+    $scope.$watch("results", (new_value, old_value) ->
+        markers = {}
+        if new_value?
+            for result in new_value
+                markers[result.id] = {message:result.smartTitle, lat:result.to_address.latitude, lng:result.to_address.longitude}
+            angular.extend $scope,
+                markers : markers
+    , true)
+
   ])
 
 # EOF

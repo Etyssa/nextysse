@@ -8,7 +8,7 @@
  # Controller of the seminaire2014App
 ###
 angular.module('seminaire2014App')
-  .controller('OverviewCtrl', ["$scope", "leafletBoundsHelpers", "Services", ($scope, leafletBoundsHelpers, Services) ->
+  .controller('OverviewCtrl', ["$scope", "Services", ($scope, Services) ->
     
     angular.extend $scope,
       # france borders
@@ -20,12 +20,6 @@ angular.module('seminaire2014App')
           lat: 39.63953756436671
           lng: -9.2724609375
       center: { lat: 46.797811548, lng:6.852539062499996, zoom: 5 }
-      # defaults:
-        # scrollWheelZoom : false
-        # crs             : 'Simple'
-        # maxZoom         : 2
-      # tiles:
-      #   url: "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
       markers: {}
 
     Services.query (data) ->
