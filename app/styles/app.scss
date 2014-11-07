@@ -1,3 +1,13 @@
 
 @import "settings";
 @import "foundation";
+
+$top-image: url("/images/logo.png");
+
+nav.top-bar .name {
+  background-image: $top-image;
+  background-repeat: no-repeat;
+  background-position: 11px 4px;
+  padding-left: 75px;
+}
+
