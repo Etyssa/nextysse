@@ -212,7 +212,8 @@ module.exports = function (grunt) {
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
           '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= yeoman.dist %>/styles/fonts/*'
+          // NOTE: commented because font-awsome is looking for a font static name
+          // '<%= yeoman.dist %>/styles/fonts/*'
         ]
       }
     },
@@ -322,6 +323,11 @@ module.exports = function (grunt) {
             'images/{,*/}*.{webp}',
             'fonts/*'
           ]
+        }, {
+          expand: true,
+          cwd: 'bower_components/font-awesome',
+          src: ['fonts/*.*'],
+          dest: 'dist/'
         }, {
           expand: true,
           cwd: '.tmp/images',
