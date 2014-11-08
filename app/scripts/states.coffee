@@ -16,4 +16,5 @@ angular.module('seminaire2014App').config [
         templateUrl: "scripts/views/about.html"
         controller: "AboutCtrl"
 ]
+
 # EOF
