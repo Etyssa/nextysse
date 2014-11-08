@@ -18,6 +18,16 @@ angular.module('seminaire2014App')
         ctrl.results = Entries.query {cat: categorie}, (data) ->
             $scope.results = angular.copy(data)
 
+    # loads data and provide them to the scope
+    $scope.service    = Services   .get({service_name: "issy"})
+    $scope.categories = Categories .query()
+    # init results with 200 first
+    $scope.results    = Entries    .query({limit:200, map_optimized:yes})
+
+    $scope.category_selected = ->
+        $scope.search_params.motivations_selected = angular.copy($scope.search_params.selected_category.motivations)
+        ctrl.search()
+
     # watch motivations selected and filter the results list
     $scope.$watch("search_params.motivations_selected", (new_value, old_value) ->
         if new_value? and ctrl.results?
@@ -29,14 +39,6 @@ angular.module('seminaire2014App')
                         return yes
             $scope.results = res
     , true)
-
-    $scope.category_selected = =>
-        $scope.search_params.motivations_selected = angular.copy($scope.search_params.selected_category.motivations)
-        @search()
-
-    # loads data and provide them to the scope
-    $scope.service    = Services   .get({service_name: "issy"})
-    $scope.categories = Categories .query()
 
     # map
     angular.extend $scope,
