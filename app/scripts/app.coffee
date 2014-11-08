@@ -36,5 +36,8 @@ angular
         controller: 'AboutCtrl'
       .otherwise
         redirectTo: '/'
+  .run ($rootScope) ->
+    $rootScope.$on '$viewContentLoaded', () ->
+      $(document).foundation()
 
-$(document).foundation()
+# EOF
