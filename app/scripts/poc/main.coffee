@@ -41,6 +41,8 @@ angular.module('seminaire2014App')
     # map
     angular.extend $scope,
       center  : { lat: 48.82268881260476, lng:2.2460174560546875, zoom: 12 }
+      defaults:
+        scrollWheelZoom : false
       markers : {}
     $scope.$watch("results", (new_value, old_value) ->
         # resize
