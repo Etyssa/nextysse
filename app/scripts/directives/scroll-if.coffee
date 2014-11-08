@@ -6,6 +6,6 @@ angular.module('seminaire2014App')
       link : (scope, element, attrs) ->
         scope.$watch "scrollIf", ->
           if scope.scrollIf
-            window.scrollTo(0, element[0].offsetTop - 100)
+            $("html").animate({scrollTop: element[0].offsetTop - 100}, "slow")
 
 # EOF
