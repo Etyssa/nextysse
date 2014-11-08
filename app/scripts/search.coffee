@@ -57,8 +57,7 @@ angular.module('seminaire2014App')
           # update map data
           if new_value?
             for result in new_value
-              markers[result.id] = {message:"<a href='#entry_#{result.id}'>#{result.smartTitle}</a> - <a href='#/#entry_#{result.id}'>test</a>", lat:result.to_address.latitude, lng:result.to_address.longitude}
-              # markers[result.id] = {message:result.smartTitle, lat:result.to_address.latitude, lng:result.to_address.longitude}
+              markers[result.id] = {message:result.smartTitle, lat:result.to_address.latitude, lng:result.to_address.longitude}
             angular.extend $scope,
               markers : markers
       , true)
