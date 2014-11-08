@@ -46,7 +46,7 @@ angular.module('seminaire2014App')
       angular.extend $scope,
         center  : { lat: 48.82268881260476, lng:2.2460174560546875, zoom: 12 }
         tiles:
-          url: "http://c.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg"
+          url: "https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png"
         defaults:
           scrollWheelZoom : false
         markers : {}
