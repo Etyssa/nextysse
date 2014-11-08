@@ -1,11 +1,16 @@
 angular.module('seminaire2014App').config [
   "$stateProvider", "$urlRouterProvider", "$locationProvider",
   ($stateProvider, $urlRouterProvider, $locationProvider)->
+    # $locationProvider.html5Mode true
     $urlRouterProvider.otherwise("search")
     $stateProvider
       .state 'search',
         url: "/search"
         templateUrl: "scripts/views/search.html"
+        controller: "SearchCtrl"
+      .state 'entry',
+        url: "/entry/:id"
+        templateUrl: "scripts/views/entry.html"
         controller: "SearchCtrl"
       .state 'overview',
         url: "/overview"
