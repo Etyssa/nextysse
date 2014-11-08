@@ -11,6 +11,8 @@ angular.module('seminaire2014App')
   .controller('OverviewCtrl', ["$scope", "Services", ($scope, Services) ->
     
     angular.extend $scope,
+      tiles:
+        url: "http://c.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg"
       # france borders
       bounds:
         northEast:
