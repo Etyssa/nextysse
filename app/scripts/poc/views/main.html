@@ -5,7 +5,7 @@
   </p>
 </div>
 
-<div>
+<div class="filter-box">
   <form
     name = "searchForm">
     <select
@@ -30,11 +30,11 @@
   no results
 </div>
 
-<div ng-if="results.length > 0">
-  {{ results.length }} results
   <div class="row">
     <leaflet width="100%" height="480px" class="large-12 columns" defaults="defaults" center="center" markers="markers"></leaflet>
   </div>
+<div ng-show="results.length > 0">
+  {{ results.length }} results
   <div ng-repeat="result in results">
     <a ng-href="#/entry/{{ result.id }}" ng-bind-html="result.smartTitle"></a>
   </div>

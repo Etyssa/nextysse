@@ -8,7 +8,7 @@
  # Controller of the seminaire2014App
 ###
 angular.module('seminaire2014App')
-  .controller('MainCtrl', ["$scope", "Services", "Categories", "Entries", ($scope, Services, Categories, Entries) ->
+  .controller('MainCtrl', ["$scope", "Services", "Categories", "Entries", "leafletData", ($scope, Services, Categories, Entries, leafletData) ->
     ctrl = this
     $scope.search_params = {}
 
@@ -43,7 +43,10 @@ angular.module('seminaire2014App')
       center  : { lat: 48.82268881260476, lng:2.2460174560546875, zoom: 12 }
       markers : {}
     $scope.$watch("results", (new_value, old_value) ->
+        # resize
+        leafletData.getMap().then (map) -> map.invalidateSize()
         markers = {}
+        # update map data
         if new_value?
             for result in new_value
                 markers[result.id] = {message:result.smartTitle, lat:result.to_address.latitude, lng:result.to_address.longitude}

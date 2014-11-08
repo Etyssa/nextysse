@@ -11,3 +11,15 @@ nav.top-bar .name {
   padding-left: 75px;
 }
 
+.angular-leaflet-map {
+    position: relative;
+    z-index: 4;
+}
+.filter-box {
+    position: absolute;
+    z-index :5;
+    background-color: white;
+    padding: 20px;
+    opacity: .8;
+    right: 0px;
+}
