@@ -19,12 +19,13 @@ angular
     'ngTouch'
     'leaflet-directive'
     'checklist-model'
+    'ui.router'
   ])
   .config ($routeProvider) ->
     $routeProvider
       .when '/',
-        templateUrl: 'scripts/poc/views/main.html'
-        controller: 'MainCtrl'
+        templateUrl: 'scripts/poc/views/search.html'
+        controller: 'SearchCtrl'
       .when '/overview',
         templateUrl: 'scripts/poc/views/overview.html'
         controller: 'OverviewCtrl'

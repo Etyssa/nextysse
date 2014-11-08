@@ -2,13 +2,13 @@
 
 ###*
  # @ngdoc function
- # @name seminaire2014App.controller:MainCtrl
+ # @name seminaire2014App.controller:SearchCtrl
  # @description
- # # MainCtrl
+ # # SearchCtrl
  # Controller of the seminaire2014App
 ###
 angular.module('seminaire2014App')
-  .controller('MainCtrl', ["$scope", "Services", "Categories", "Entries", "leafletData", ($scope, Services, Categories, Entries, leafletData) ->
+  .controller('SearchCtrl', ["$scope", "Services", "Categories", "Entries", "leafletData", ($scope, Services, Categories, Entries, leafletData) ->
     ctrl = this
     $scope.search_params = {}
 
