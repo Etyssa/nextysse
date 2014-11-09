@@ -28,27 +28,43 @@ nav.top-bar {
     left     : 0;
     z-index  : 4;
   }
-  .filter-box {
-    position         : absolute;
-    z-index          : 5;
-    background-color : white;
-    padding          : 20px;
-    opacity          : .8;
-    right            : 0;
-  }
-  .results {
+  .board {
     position         : absolute;
     right            : 0;
     bottom           : 0;
     top              : 0;
     z-index          : 6;
-    background-color : white;
-    opacity          : .9;
-    padding          : 10px;
-    overflow-y       : scroll;
-    max-width        : 450px;
-    width            : 40%;
-    min-width        : 200px;
+    width            : 75%;
+    max-width        : 900px;
+    .results, .details {
+      height           : 100%;
+      width            : 50%;
+      z-index          : 6;
+      overflow-y       : scroll;
+      background-color : white;
+      opacity          : .95;
+    }
+    .results {
+      float: left;
+      padding          : 10px;
+      ul {
+        list-style: none;
+        li {
+          padding-left: 1.2em;
+          &:before {
+            content     : '\f0a3';
+            font-family : FontAwesome;
+            display     : inline-block;
+            width       : 1.2em;
+            margin-left : -1.2em;
+            color       : $primary-color;
+          }
+        }
+      }
+    }
+    .details {
+      float: right;
+    }
   }
 }
 

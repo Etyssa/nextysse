@@ -9,26 +9,31 @@
 ###
 angular.module('seminaire2014App')
   .controller('SearchCtrl',
-    ["$scope", "Services", "Categories", "Entries", "leafletData",
-    ($scope, Services, Categories, Entries, leafletData) ->
+    ["$scope", "Services", "Categories", "Entries", "Users", "leafletData",
+    ($scope, Services, Categories, Entries, Users, leafletData) ->
       ctrl = this
       $scope.search_params = {}
 
       ctrl.search = =>
         if $scope.search_params.selected_category?
           categorie = $scope.search_params.selected_category.alias
-        ctrl.results = Entries.query {cat: categorie}, (data) ->
+        ctrl.results = Entries.query {cat: categorie, to_address:"issy"}, (data) ->
           $scope.results = angular.copy(data)
 
       # loads data and provide them to the scope
       $scope.service    = Services   .get({service_name: "issy"})
       $scope.categories = Categories .query()
       # init results with 200 first
-      $scope.results    = Entries    .query({limit:200, map_optimized:yes})
+      $scope.results    = Entries    .query({limit:200, map_optimized:yes, to_address:"issy"})
 
       $scope.focusOnEntry = (entry) =>
-        leafletData.getMarkers().then (data) ->
-            data[entry.id].openPopup()
+        leafletData.getMarkers().then (markers) ->
+          marker = markers[entry.id]
+          marker.openPopup()
+          # retrieve the entry if the given entry is a light version
+          $scope.entry_selected = if entry.creation_date? then entry else Entries.get({entry_id:entry.id})
+          # $scope.related_user    = Users.get({user_id:entry.creatorUrl.split("/").pop()})
+
 
       $scope.category_selected = ->
         $scope.search_params.motivations_selected = angular.copy($scope.search_params.selected_category.motivations)
@@ -48,16 +53,12 @@ angular.module('seminaire2014App')
 
       # map
       angular.extend $scope,
-        center  : { lat: 48.82268881260476, lng:2.2460174560546875, zoom: 12 }
         tiles:
           url: "https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png"
         defaults:
           scrollWheelZoom : false
         markers : {}
       $scope.$watch("results", (new_value, old_value) ->
-          # resize
-          leafletData.getMap().then (map) ->
-            map.invalidateSize()
           markers = {}
           # update map data
           if new_value?
@@ -65,12 +66,20 @@ angular.module('seminaire2014App')
               markers[result.id] = {message:result.smartTitle, lat:result.to_address.latitude, lng:result.to_address.longitude}
             angular.extend $scope,
               markers : markers
+          # resize
+          leafletData.getMap().then (map) ->
+            # map.invalidateSize()
+            leafletData.getMarkers().then (markers) ->
+              if _.size(markers) > 0
+                groups = new L.featureGroup(_.values(markers))
+                map.fitBounds groups,
+                  paddingBottomRight: [900, 0]
       , true)
 
       # on marker click
       $scope.$on 'leafletDirectiveMarker.click', (e, args) ->
-        entry_id = parseInt(args.markerName)
-        $scope.focus_on_entry_id = entry_id
+        entity_id = parseInt(args.markerName)
+        $scope.focusOnEntry(_.find($scope.results, (i)-> i.id == entity_id))
     ])
 
 # EOF

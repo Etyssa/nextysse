@@ -1,41 +1,45 @@
 <div class="Search">
-  <div class="filter-box">
-    <form
-      name = "searchForm">
-      <select
-        ng-model   = "search_params.selected_category" 
-        ng-change  = "category_selected()"
-        ng-options = "cat as cat.title for cat in categories">
-      </select>
-      <div ng-if="search_params.selected_category">
-        <label ng-repeat="motivation in search_params.selected_category.motivations">
-          <input
-            type            = "checkbox" 
-            name            = "motivations"
-            checklist-model = "search_params.motivations_selected"
-            checklist-value = "motivation"/>
-          <span ng-bind-html = "motivation.label"></span>
-        </label>
-      </div>
-    </form>
-  </div>
 
   <leaflet
     tiles    = "tiles"
     defaults = "defaults"
-    center   = "center"
     markers  = "markers">
   </leaflet>
 
-  <div ng-show="results.length == 0">no results</div>
-  <div ng-show="results.length > 0">
+  <div class="board">
     <div class="results">
-      {{ results.length }} results
+      <div class="filter-box">
+        <form
+          name = "searchForm">
+          <select
+            ng-model   = "search_params.selected_category" 
+            ng-change  = "category_selected()"
+            ng-options = "cat as cat.title for cat in categories">
+          </select>
+          <div ng-if="search_params.selected_category">
+            <label ng-repeat="motivation in search_params.selected_category.motivations">
+              <input
+                type            = "checkbox" 
+                name            = "motivations"
+                checklist-model = "search_params.motivations_selected"
+                checklist-value = "motivation"/>
+              <span ng-bind-html = "motivation.label"></span>
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="results-nb">{{ results.length }} results</div>
       <ul>
         <li ng-repeat="result in results" id="entry_{{result.id}}">
-          <a ng-click="focusOnEntry(result)" ng-bind-html="result.smartTitle" scroll-if="result.id == focus_on_entry_id"></a>
+          <a
+            ng-click     = "focusOnEntry(result)"
+            ng-bind-html = "result.smartTitle" ></a>
         </li>
       </ul>
+    </div>
+    <div class="details">
+      <pre>{{ entry_selected | json }}</pre>
+      <pre>{{ related_user   | json }}</pre>
     </div>
   </div>
 </div>

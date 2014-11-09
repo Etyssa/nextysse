@@ -8,12 +8,12 @@
  # Controller of the seminaire2014App
 ###
 angular.module('seminaire2014App')
-  .controller('EntryCtrl', ["$scope", "$route", "Entries", "User", ($scope, $route, Entries, User) ->
+  .controller('EntryCtrl', ["$scope", "$route", "Entries", "Users", ($scope, $route, Entries, Users) ->
     # loads data and provide them to the scope
     Entries.get {entry_id:$route.current.params.id}, (entry) ->
         user_id      = entry.creatorUrl.split("/").pop()
         $scope.entry = entry
-        $scope.user  = User.get({user_id: user_id})
+        $scope.user  = Users.get({user_id: user_id})
   ])
 
 # EOF
