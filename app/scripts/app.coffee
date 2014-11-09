@@ -10,6 +10,7 @@
 ###
 angular
   .module('seminaire2014App', [
+    'seminaire2014App.directives'
     'etyssa'
     'ngAnimate'
     'ngCookies'

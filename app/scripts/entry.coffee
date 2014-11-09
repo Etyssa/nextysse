@@ -15,3 +15,5 @@ angular.module('seminaire2014App')
         $scope.entry = entry
         $scope.user  = User.get({user_id: user_id})
   ])
+
+# EOF

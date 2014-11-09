@@ -26,6 +26,10 @@ angular.module('seminaire2014App')
       # init results with 200 first
       $scope.results    = Entries    .query({limit:200, map_optimized:yes})
 
+      $scope.focusOnEntry = (entry) =>
+        leafletData.getMarkers().then (data) ->
+            data[entry.id].openPopup()
+
       $scope.category_selected = ->
         $scope.search_params.motivations_selected = angular.copy($scope.search_params.selected_category.motivations)
         ctrl.search()
@@ -52,7 +56,8 @@ angular.module('seminaire2014App')
         markers : {}
       $scope.$watch("results", (new_value, old_value) ->
           # resize
-          leafletData.getMap().then (map) -> map.invalidateSize()
+          leafletData.getMap().then (map) ->
+            map.invalidateSize()
           markers = {}
           # update map data
           if new_value?
@@ -61,6 +66,7 @@ angular.module('seminaire2014App')
             angular.extend $scope,
               markers : markers
       , true)
+
       # on marker click
       $scope.$on 'leafletDirectiveMarker.click', (e, args) ->
         entry_id = parseInt(args.markerName)

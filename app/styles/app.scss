@@ -4,22 +4,52 @@
 
 $top-image: url("/images/logo.png");
 
-nav.top-bar .name {
-  background-image: $top-image;
-  background-repeat: no-repeat;
-  background-position: 11px 4px;
-  padding-left: 75px;
+nav.top-bar {
+  z-index: 7;
+  .name {
+    background-image    : $top-image;
+    background-repeat   : no-repeat;
+    background-position : 11px 4px;
+    padding-left        : 75px;
+  }
 }
 
-.angular-leaflet-map {
-    position: relative;
-    z-index: 4;
+.Search {
+  position : absolute;
+  right    : 0;
+  bottom   : 0;
+  top      : $tabbar-height;
+  left     : 0;
+  .angular-leaflet-map {
+    position : absolute;
+    right    : 0;
+    bottom   : 0;
+    top      : 0;
+    left     : 0;
+    z-index  : 4;
+  }
+  .filter-box {
+    position         : absolute;
+    z-index          : 5;
+    background-color : white;
+    padding          : 20px;
+    opacity          : .8;
+    right            : 0;
+  }
+  .results {
+    position         : absolute;
+    right            : 0;
+    bottom           : 0;
+    top              : 0;
+    z-index          : 6;
+    background-color : white;
+    opacity          : .9;
+    padding          : 10px;
+    overflow-y       : scroll;
+    max-width        : 450px;
+    width            : 40%;
+    min-width        : 200px;
+  }
 }
-.filter-box {
-    position: absolute;
-    z-index :5;
-    background-color: white;
-    padding: 20px;
-    opacity: .8;
-    right: 0px;
-}
+
+// EOF
