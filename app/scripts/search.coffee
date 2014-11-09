@@ -24,7 +24,7 @@ angular.module('seminaire2014App')
       $scope.service    = Services   .get({service_name: "issy"})
       $scope.categories = Categories .query()
       # init results with 200 first
-      $scope.results    = Entries    .query({limit:200, map_optimized:yes, to_address:"issy"})
+      ctrl.search()
 
       $scope.focusOnEntry = (entry) =>
         leafletData.getMarkers().then (markers) ->
