@@ -15,6 +15,7 @@
             ng-model   = "search_params.selected_category" 
             ng-change  = "category_selected()"
             ng-options = "cat as cat.title for cat in categories">
+            <option value="">-- choose a category --</option>
           </select>
           <div ng-if="search_params.selected_category">
             <label ng-repeat="motivation in search_params.selected_category.motivations">

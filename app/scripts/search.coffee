@@ -17,7 +17,7 @@ angular.module('seminaire2014App')
       ctrl.search = =>
         if $scope.search_params.selected_category?
           categorie = $scope.search_params.selected_category.alias
-        ctrl.results = Entries.query {cat: categorie, to_address:"issy"}, (data) ->
+        ctrl.results = Entries.query {cat: categorie, to_address:"issy", limit:200, map_optimized:yes}, (data) ->
           $scope.results = angular.copy(data)
 
       # loads data and provide them to the scope
@@ -36,7 +36,10 @@ angular.module('seminaire2014App')
 
 
       $scope.category_selected = ->
-        $scope.search_params.motivations_selected = angular.copy($scope.search_params.selected_category.motivations)
+        if $scope.search_params.selected_category?
+          $scope.search_params.motivations_selected = angular.copy($scope.search_params.selected_category.motivations)
+        else 
+          $scope.search_params.motivations_selected = undefined
         ctrl.search()
 
       # watch motivations selected and filter the results list
