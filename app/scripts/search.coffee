@@ -43,16 +43,13 @@ angular.module('seminaire2014App')
           $scope.search_params.motivations_selected = angular.copy($scope.search_params.selected_category.motivations)
 
       $scope.focusOnEntry = (entry) =>
-        leafletData.getMarkers().then (markers) ->
-          marker = markers[entry.id]
-          marker.openPopup()
-          $scope.visited_results[entry.id] = true
-          # retrieve the entry if the given entry is a light version
-          if entry.creation_date?
-            $scope.entry_selected = entry
-          else
-            Entries.get({entry_id:entry.id}, (entry)-> $scope.entry_selected = entry)
-          $scope.related_user   = Users.get({user_id:entry.creatorNickname})
+        $scope.visited_results[entry.id] = true
+        # retrieve the entry if the given entry is a light version
+        if entry.creation_date?
+          $scope.entry_selected = entry
+        else
+          Entries.get({entry_id:entry.id}, (entry)-> $scope.entry_selected = entry)
+        $scope.related_user   = Users.get({user_id:entry.creatorNickname})
 
       $scope.onCategorySelected = ->
         # init the motivation filter
@@ -89,7 +86,7 @@ angular.module('seminaire2014App')
           # update map data
           if new_value?
             for result in new_value
-              markers[result.id] = {message:result.smart_title, lat:result.to_address.latitude, lng:result.to_address.longitude}
+              markers[result.id] = {message:result.smartTitle, lat:result.to_address.latitude, lng:result.to_address.longitude, autoPan: false}
             angular.extend $scope,
               markers : markers
       , true)
