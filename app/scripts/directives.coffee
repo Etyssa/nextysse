@@ -19,5 +19,12 @@ angular.module('seminaire2014App.directives', [])
             element.addClass(attrs.addClassWhenOverViewport)
           else
             element.removeClass(attrs.addClassWhenOverViewport)
-
+  .directive "relayoutSearchView", ($window)->
+    restrict: 'A'
+    link : (scope, element, attrs) ->
+      results_nui = element.find(".results")
+      details_nui = element.find(".details")
+      details_nui.css
+        width : $(window).width() - results_nui.outerWidth(true) - 20
+        right : results_nui.outerWidth(true)
 # EOF

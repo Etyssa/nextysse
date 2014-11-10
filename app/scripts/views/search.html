@@ -1,47 +1,50 @@
-<div class="Search">
+<div class="Search" relayout-search-view>
 
   <leaflet
     tiles    = "tiles"
     defaults = "defaults"
     markers  = "markers">
   </leaflet>
-
-  <div class="board">
-    <div class="results">
-      <div class="filter-box">
-        <form
-          name = "searchForm">
-          <select
-            ng-model   = "search_params.selected_category" 
-            ng-change  = "category_selected()"
-            ng-options = "cat as cat.title for cat in categories">
-            <option value="">-- choose a category --</option>
-          </select>
-          <div ng-if="search_params.selected_category">
-            <label ng-repeat="motivation in search_params.selected_category.motivations">
-              <input
-                type            = "checkbox" 
-                name            = "motivations"
-                checklist-model = "search_params.motivations_selected"
-                checklist-value = "motivation"/>
-              <span ng-bind-html = "motivation.label"></span>
-            </label>
-          </div>
-        </form>
-      </div>
-      <div class="results-nb" ng-if="results == undefined || results.length == 0">no results</div>
-      <div class="results-nb" ng-if="results.length > 0">{{ results.length }} results</div>
-      <ul>
-        <li ng-repeat="result in results" id="entry_{{result.id}}">
-          <a
-            ng-click     = "focusOnEntry(result)"
-            ng-bind-html = "result.smartTitle" ></a>
-        </li>
-      </ul>
+  
+  <div class="results">
+    <div class="filter-box">
+      <form
+        name = "searchForm">
+        <select
+          ng-model   = "search_params.selected_category" 
+          ng-change  = "category_selected()"
+          ng-options = "cat as cat.title for cat in categories">
+          <option value="">-- choose a category --</option>
+        </select>
+        <div ng-if="search_params.selected_category">
+          <dl class="sub-nav">
+            <dt>Filters:</dt>
+            <dd ng-class="{'active' : search_params.motivations_selected.length == search_params.selected_category.motivations.length }">
+              <a href="#" ng-click="search_params.motivations_selected = search_params.selected_category.motivations">all</a>
+            </dd>
+            <dd
+              ng-repeat = "motivation in search_params.selected_category.motivations"
+              ng-click  = "toggleMotivation(motivation)"
+              ng-class  = "{'active': isMotivationSelected(motivation) }">
+              <a href="#" ng-bind-html="motivation.label"></a>
+            </dd>
+          </dl>
+        </div>  
+      </form>
     </div>
-    <div class="details">
-      <pre>{{ entry_selected | json }}</pre>
-      <pre>{{ related_user   | json }}</pre>
-    </div>
+    <div class="results-nb" ng-if="results == undefined || results.length == 0">no results</div>
+    <div class="results-nb" ng-if="results.length > 0">{{ results.length }} results</div>
+    <ul>
+      <li ng-repeat="result in results" id="entry_{{result.id}}">
+        <a
+          ng-click     = "focusOnEntry(result)"
+          ng-bind-html = "result.smartTitle" ></a>
+      </li>
+    </ul>
   </div>
+
+  <div class="details" ng-show="entry_selected">
+    <ng-include src="'scripts/views/entry.html'"></ng-include>
+  </div>
+
 </div>

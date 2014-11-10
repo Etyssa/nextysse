@@ -26,14 +26,21 @@ angular.module('seminaire2014App')
       # init results with 200 first
       ctrl.search()
 
+      $scope.isMotivationSelected = (motivation) ->
+        _.some($scope.search_params.motivations_selected, (item) -> item.alias == motivation.alias)
+      $scope.toggleMotivation = (motivation) ->
+        for m, i in $scope.search_params.motivations_selected
+          if m.alias == motivation.alias
+            return $scope.search_params.motivations_selected.splice(i, 1)
+        $scope.search_params.motivations_selected.push(motivation)
+
       $scope.focusOnEntry = (entry) =>
         leafletData.getMarkers().then (markers) ->
           marker = markers[entry.id]
           marker.openPopup()
           # retrieve the entry if the given entry is a light version
           $scope.entry_selected = if entry.creation_date? then entry else Entries.get({entry_id:entry.id})
-          # $scope.related_user    = Users.get({user_id:entry.creatorUrl.split("/").pop()})
-
+          $scope.related_user   = Users.get({user_id:entry.creatorNickname})
 
       $scope.category_selected = ->
         if $scope.search_params.selected_category?
@@ -47,10 +54,11 @@ angular.module('seminaire2014App')
         if new_value? and ctrl.results?
           res = angular.copy(ctrl.results)
           res = res.filter (item) ->
-            motivations_required = angular.copy($scope.search_params.motivations_selected)
-            for motivation_required in motivations_required
-              if parseInt(motivation_required.id) == item.motivation.id
-                return yes
+            if item.motivation?
+              motivations_required = angular.copy($scope.search_params.motivations_selected)
+              for motivation_required in motivations_required
+                if parseInt(motivation_required.id) == item.motivation.id
+                  return yes
           $scope.results = res
       , true)
 
@@ -76,13 +84,13 @@ angular.module('seminaire2014App')
               if _.size(markers) > 0
                 groups = new L.featureGroup(_.values(markers))
                 map.fitBounds groups,
-                  paddingBottomRight: [900, 0]
+                  paddingBottomRight: [500, 0]
       , true)
 
       # on marker click
       $scope.$on 'leafletDirectiveMarker.click', (e, args) ->
         entity_id = parseInt(args.markerName)
         $scope.focusOnEntry(_.find($scope.results, (i)-> i.id == entity_id))
-    ])
+  ])
 
 # EOF

@@ -19,7 +19,6 @@ angular
     'ngSanitize'
     'ngTouch'
     'leaflet-directive'
-    'checklist-model'
     'ui.router'
   ])
   .run ($rootScope) ->
