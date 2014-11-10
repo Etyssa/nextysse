@@ -34,16 +34,24 @@ angular.module('seminaire2014App.directives', [])
                 map.fitBounds groups,
                   paddingBottomRight: [offset_bottom_right[0], offset_bottom_right[1]]
         relayout = ->
+          window_height = $(window).height()
+          details_height = Math.max($(window).height() *.55)
+          details_offset_top = window_height - details_height
           details_nui.css
             width : $(window).width() - results_list_width
+            height: details_height
             right : results_nui.outerWidth(true)
+            top   : details_offset_top - 30
         # relayout
         relayout()
         # bind events
         angular.element($window).resize relayout
         # follow the results to fit the map bounds regarding the markers
         scope.$watch "results", ->
-          fit_map_bounds_to_markers([results_list_width, 0])
+          if element.find(".details").hasClass("ng-hide")
+            fit_map_bounds_to_markers([results_list_width, 0])
+          else
+            fit_map_bounds_to_markers([results_list_width, details_nui.outerHeight(true) + 20])
         # follow the details view to ajust the map
         scope.$watch (-> element.find(".details").hasClass("ng-hide")), (hidden) ->
           if hidden

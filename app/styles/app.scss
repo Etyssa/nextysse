@@ -31,23 +31,21 @@ nav.top-bar {
   }
   .details {
     position         : absolute;
-    bottom           : 0;
+    top              : 0;
     right            : 0;
     z-index          : 7;
     left             : 0;
-    min-height       : 200px;
-    max-height       : 50%;
     width            : 100%;
     overflow         : auto;
     background-color : white;
     box-shadow       : 0px -20px 0px rgba($primary-color, 0.51);
     opacity          : .95;
     padding          : 20px;
-    transition-property: bottom;
+    transition-property: top;
     transition-duration: .5s;
     &.ng-hide{
-      display: block !important;
-      bottom: -900px;
+      display : block !important;
+      top     : 1000px !important;
     }
     .close-details {
       content   :'×';
@@ -56,6 +54,10 @@ nav.top-bar {
       top       : -10px;
       font-size : 3em;
       cursor    : pointer;
+    }
+    img.avatar {
+      float: left;
+      padding-right: 20px;
     }
   }
   .results {
