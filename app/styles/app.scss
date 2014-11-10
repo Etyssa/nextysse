@@ -74,6 +74,9 @@ nav.top-bar {
     background-color : white;
     opacity          : .95;
     padding          : 10px;
+    .sub-nav dd {
+      margin-bottom: 5px;
+    }
     ul {
       list-style: none;
       li {
@@ -85,6 +88,9 @@ nav.top-bar {
           width       : 1.2em;
           margin-left : -1.2em;
           color       : $primary-color;
+        }
+        &.visited:before {
+          color : rgba($primary-color, 0.3);
         }
       }
     }

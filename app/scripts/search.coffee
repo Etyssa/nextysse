@@ -13,6 +13,7 @@ angular.module('seminaire2014App')
     ($scope, Services, Categories, Entries, Users, leafletData) ->
       ctrl = this
       $scope.search_params = {}
+      $scope.visited_results = {}
 
       ctrl.search = =>
         if $scope.search_params.selected_category?
@@ -45,8 +46,12 @@ angular.module('seminaire2014App')
         leafletData.getMarkers().then (markers) ->
           marker = markers[entry.id]
           marker.openPopup()
+          $scope.visited_results[entry.id] = true
           # retrieve the entry if the given entry is a light version
-          $scope.entry_selected = if entry.creation_date? then entry else Entries.get({entry_id:entry.id})
+          if entry.creation_date?
+            $scope.entry_selected = entry
+          else
+            Entries.get({entry_id:entry.id}, (entry)-> $scope.entry_selected = entry)
           $scope.related_user   = Users.get({user_id:entry.creatorNickname})
 
       $scope.onCategorySelected = ->
@@ -84,7 +89,7 @@ angular.module('seminaire2014App')
           # update map data
           if new_value?
             for result in new_value
-              markers[result.id] = {message:result.smartTitle, lat:result.to_address.latitude, lng:result.to_address.longitude}
+              markers[result.id] = {message:result.smart_title, lat:result.to_address.latitude, lng:result.to_address.longitude}
             angular.extend $scope,
               markers : markers
       , true)
