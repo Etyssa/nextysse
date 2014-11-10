@@ -48,6 +48,16 @@
 
   <div class="details" ng-show="entry_selected">
     <a class="close-details" ng-click="entry_selected = undefined">&#215;</a>
+    <div class="details__navigation">
+      <a 
+        class    = "previous-details"
+        ng-class = "{disabled: !hasPreviousEntry()}"
+        ng-click = "previousEntry()">&lt;</a>
+      <a
+        class    = "next-details"
+        ng-class = "{disabled: !hasNextEntry()}"
+        ng-click = "nextEntry()">&gt;</a>
+    </div>
     <ng-include src="'scripts/views/entry.html'"></ng-include>
   </div>
 

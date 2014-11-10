@@ -47,6 +47,17 @@ nav.top-bar {
       display : block !important;
       top     : 1000px !important;
     }
+    .details__navigation {
+      position  : absolute;
+      right     : 50px;
+      top       : -11px;
+      font-size : 3em;
+      .disabled {
+        cursor: default;
+        color: grey;
+        pointer-events: none;
+      }
+    }
     .close-details {
       content   :'×';
       position  : absolute;

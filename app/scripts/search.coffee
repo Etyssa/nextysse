@@ -60,6 +60,32 @@ angular.module('seminaire2014App')
         # search entries in this category
         ctrl.search()
 
+      $scope.hasNextEntry = ->
+        if $scope.entry_selected?
+          for entry, i in $scope.results
+            if entry?
+              if entry.id == $scope.entry_selected.id
+                return $scope.results.length > i+1
+
+      $scope.nextEntry = ->
+        for entry, i in $scope.results
+          if entry?
+            if entry.id == $scope.entry_selected.id
+              return $scope.focusOnEntry($scope.results[i+1])
+
+      $scope.hasPreviousEntry = ->
+        if $scope.entry_selected?
+          for entry, i in $scope.results
+            if entry?
+              if entry.id == $scope.entry_selected.id
+                return i > 0
+
+      $scope.previousEntry = ->
+        for entry, i in $scope.results
+          if entry?
+            if entry.id == $scope.entry_selected.id
+              return $scope.focusOnEntry($scope.results[i-1])
+
       # watch motivations selected and filter the results list
       $scope.$watch("search_params.motivations_selected", (new_value, old_value) ->
         if new_value? and ctrl.results?
