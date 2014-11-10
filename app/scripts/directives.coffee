@@ -33,13 +33,12 @@ angular.module('seminaire2014App.directives', [])
                 marker = markers[zoom_on_entry_id]
                 marker.openPopup()
                 # set an offset
-                $timeout ->
-                  map.setView(marker._latlng, 15)
-                  center_points = map.latLngToContainerPoint(marker._latlng)
-                  x = center_points.x + (results_list_width / 2)
-                  y = center_points.y + (details_nui.outerHeight(true) / 2)
-                  point = map.containerPointToLatLng([x, y])
-                  map.setView(point, 15)
+                map.setView(marker._latlng, 15)
+                center_points = map.latLngToContainerPoint(marker._latlng)
+                x = center_points.x + (results_list_width / 2)
+                y = center_points.y + (details_nui.outerHeight(true) / 2)
+                point = map.containerPointToLatLng([x, y])
+                map.setView(point, 15)
               else
                 if _.size(markers) > 0
                   groups = new L.featureGroup(_.values(markers))
