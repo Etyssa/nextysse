@@ -44,6 +44,7 @@ angular.module('seminaire2014App.directives', [])
                   groups = new L.featureGroup(_.values(markers))
                   map.fitBounds groups,
                     paddingBottomRight: [offset_bottom_right[0], offset_bottom_right[1]]
+                map.closePopup()
         fit_map_bounds_to_markers_depending_of_details_panel =  (zoom_on_entry_id) ->
           $timeout ->
             if element.find(".details").hasClass("ng-hide")
