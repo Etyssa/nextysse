@@ -38,7 +38,10 @@
       <small ng-if="results.length > 0">{{ results.length }} results</small>
     </h2>
     <ul>
-      <li ng-repeat="result in results" id="entry_{{result.id}}" ng-class="{'visited': visited_results[result.id]}">
+      <li 
+        ng-repeat = "result in results" 
+        id        = "entry_{{result.id}}"
+        ng-class  = "{'visited': visited_results[result.id], 'active': result.id == entry_selected.id}">
         <a
           ng-click     = "focusOnEntry(result)"
           ng-bind-html = "result.smartTitle" ></a>
