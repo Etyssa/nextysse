@@ -20,6 +20,14 @@ angular.module('seminaire2014App').config [
         url: "/about"
         templateUrl: "scripts/views/about.html"
         controller: "AboutCtrl"
+      .state 'login',
+        url: "/login"
+        templateUrl: "scripts/views/login.html"
+        controller: "LoginCtrl"        
+      .state 'profile',
+        url: "/profile"
+        templateUrl: "scripts/views/profile.html"
+        controller: "ProfileCtrl"             
 ]
 
 # EOF

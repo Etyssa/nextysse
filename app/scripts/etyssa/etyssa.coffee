@@ -27,5 +27,9 @@ angular.module('etyssa', ["etyssa.config"])
   .factory('Users',      ["$resource", "GENERAL_CONFIG", ($resource, GENERAL_CONFIG)  ->
     $resource "#{GENERAL_CONFIG.API_HOST}/rest/services/issy/users/:user_id?token=:token"   , {token:GENERAL_CONFIG.ETYSSA_API_TOKEN}, {}
   ])
+  .factory('Profile',      ["$resource", "GENERAL_CONFIG", ($resource, GENERAL_CONFIG)  ->
+    $resource "#{GENERAL_CONFIG.API_HOST}/rest/me/?token=:token"   , {token:GENERAL_CONFIG.ETYSSA_API_TOKEN}, {}
+  ])
+
 
 # EOF
