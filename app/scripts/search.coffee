@@ -87,14 +87,6 @@ angular.module('seminaire2014App')
               markers[result.id] = {message:result.smartTitle, lat:result.to_address.latitude, lng:result.to_address.longitude}
             angular.extend $scope,
               markers : markers
-          # resize
-          leafletData.getMap().then (map) ->
-            # map.invalidateSize()
-            leafletData.getMarkers().then (markers) ->
-              if _.size(markers) > 0
-                groups = new L.featureGroup(_.values(markers))
-                map.fitBounds groups,
-                  paddingBottomRight: [500, 0]
       , true)
 
       # on marker click

@@ -1,5 +1,4 @@
 angular.module('seminaire2014App.directives', [])
-
   .directive "scrollIf", ->
       restrict: 'A'
       scope:
@@ -19,15 +18,38 @@ angular.module('seminaire2014App.directives', [])
             element.addClass(attrs.addClassWhenOverViewport)
           else
             element.removeClass(attrs.addClassWhenOverViewport)
-  .directive "relayoutSearchView", ($window)->
-    restrict: 'A'
-    link : (scope, element, attrs) ->
-      relayout = ->
+  .directive("relayoutSearchView",
+    ["$window", "leafletData",
+    ($window, leafletData)->
+      restrict: 'A'
+      link : (scope, element, attrs) ->
         results_nui = element.find(".results")
         details_nui = element.find(".details")
-        details_nui.css
-          width : $(window).width() - results_nui.outerWidth(true) - 20
-          right : results_nui.outerWidth(true)
-      relayout()
-      angular.element($window).resize relayout
+        results_list_width = results_nui.outerWidth(true) + 20
+        fit_map_bounds_to_markers = (offset_bottom_right) ->
+          leafletData.getMap().then (map) ->
+            leafletData.getMarkers().then (markers) ->
+              if _.size(markers) > 0
+                groups = new L.featureGroup(_.values(markers))
+                map.fitBounds groups,
+                  paddingBottomRight: [offset_bottom_right[0], offset_bottom_right[1]]
+        relayout = ->
+          details_nui.css
+            width : $(window).width() - results_list_width
+            right : results_nui.outerWidth(true)
+        # relayout
+        relayout()
+        # bind events
+        angular.element($window).resize relayout
+        # follow the results to fit the map bounds regarding the markers
+        scope.$watch "results", ->
+          fit_map_bounds_to_markers([results_list_width, 0])
+        # follow the details view to ajust the map
+        scope.$watch (-> element.find(".details").hasClass("ng-hide")), (hidden) ->
+          if hidden
+            fit_map_bounds_to_markers([results_list_width, 0])
+          else
+            fit_map_bounds_to_markers([results_list_width, details_nui.outerHeight(true) + 20])
+    ])
+
 # EOF
