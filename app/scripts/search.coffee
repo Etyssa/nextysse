@@ -28,11 +28,18 @@ angular.module('seminaire2014App')
 
       $scope.isMotivationSelected = (motivation) ->
         _.some($scope.search_params.motivations_selected, (item) -> item.alias == motivation.alias)
+
       $scope.toggleMotivation = (motivation) ->
         for m, i in $scope.search_params.motivations_selected
           if m.alias == motivation.alias
             return $scope.search_params.motivations_selected.splice(i, 1)
         $scope.search_params.motivations_selected.push(motivation)
+
+      $scope.toggleAllFilter = ->
+        if $scope.search_params.motivations_selected.length == $scope.search_params.selected_category.motivations.length
+          $scope.search_params.motivations_selected = []
+        else
+          $scope.search_params.motivations_selected = angular.copy($scope.search_params.selected_category.motivations)
 
       $scope.focusOnEntry = (entry) =>
         leafletData.getMarkers().then (markers) ->
@@ -42,11 +49,13 @@ angular.module('seminaire2014App')
           $scope.entry_selected = if entry.creation_date? then entry else Entries.get({entry_id:entry.id})
           $scope.related_user   = Users.get({user_id:entry.creatorNickname})
 
-      $scope.category_selected = ->
+      $scope.onCategorySelected = ->
+        # init the motivation filter
         if $scope.search_params.selected_category?
           $scope.search_params.motivations_selected = angular.copy($scope.search_params.selected_category.motivations)
         else 
           $scope.search_params.motivations_selected = undefined
+        # search entries in this category
         ctrl.search()
 
       # watch motivations selected and filter the results list
@@ -54,11 +63,12 @@ angular.module('seminaire2014App')
         if new_value? and ctrl.results?
           res = angular.copy(ctrl.results)
           res = res.filter (item) ->
-            if item.motivation?
+            if item.motivations?
               motivations_required = angular.copy($scope.search_params.motivations_selected)
               for motivation_required in motivations_required
-                if parseInt(motivation_required.id) == item.motivation.id
-                  return yes
+                for motivation in item.motivations
+                  if parseInt(motivation_required.id) == motivation.id
+                    return yes
           $scope.results = res
       , true)
 

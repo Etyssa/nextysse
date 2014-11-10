@@ -12,7 +12,7 @@
         name = "searchForm">
         <select
           ng-model   = "search_params.selected_category" 
-          ng-change  = "category_selected()"
+          ng-change  = "onCategorySelected()"
           ng-options = "cat as cat.title for cat in categories">
           <option value="">-- choose a category --</option>
         </select>
@@ -20,7 +20,7 @@
           <dl class="sub-nav">
             <dt>Filters:</dt>
             <dd ng-class="{'active' : search_params.motivations_selected.length == search_params.selected_category.motivations.length }">
-              <a href="#" ng-click="search_params.motivations_selected = search_params.selected_category.motivations">all</a>
+              <a href="#" ng-click="toggleAllFilter()">all</a>
             </dd>
             <dd
               ng-repeat = "motivation in search_params.selected_category.motivations"
@@ -44,6 +44,7 @@
   </div>
 
   <div class="details" ng-show="entry_selected">
+    <a class="close-details" ng-click="entry_selected = undefined">&#215;</a>
     <ng-include src="'scripts/views/entry.html'"></ng-include>
   </div>
 
