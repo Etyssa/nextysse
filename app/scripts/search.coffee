@@ -12,25 +12,27 @@ angular.module('seminaire2014App')
     ["$scope", "Services", "Categories", "Entries", "Users", "leafletData",
     ($scope, Services, Categories, Entries, Users, leafletData) ->
       ctrl = this
-      $scope.search_params = {}
-      $scope.visited_results = {}
+      $scope.search_params     = {}
+      $scope.visited_results   = {}
       $scope.favorited_results = {}
+      $scope.favorite_mode     = no
 
-      ctrl.search = =>
+      ctrl.search = (params) =>
+        params = params or {}
         if $scope.search_params.selected_category?
           categorie = $scope.search_params.selected_category.alias
-        ctrl.results = Entries.query {cat: categorie, to_address:"issy", limit:200, map_optimized:yes}, (data) ->
+        ctrl.results = Entries.query {cat: categorie, to_address:"issy", limit:params.limit or 200, map_optimized:yes}, (data) ->
           $scope.results = angular.copy(data)
 
       # loads data and provide them to the scope
       $scope.service    = Services   .get({service_name: "issy"})
       $scope.categories = Categories .query()
       # init results with 200 first
-      ctrl.search()
+      ctrl.search({limit:10})
 
       # Favorite Mode
       $scope.$watch "favorite_mode", (favorite_mode) ->
-        if $scope.favorite_mode
+        if favorite_mode
           keys = Object.keys($scope.favorited_results).map((int) -> parseInt(int))
           $scope.results = $scope.results.filter((entry)-> keys.indexOf(entry.id) > -1)
         else
@@ -67,15 +69,17 @@ angular.module('seminaire2014App')
         $scope.related_user   = Users.get({user_id:entry.creator_nickname})
 
       $scope.onCategorySelected = ->
+        params = {}
         # init the motivation filter
         if $scope.search_params.selected_category?
           $scope.search_params.motivations_selected = angular.copy($scope.search_params.selected_category.motivations)
-        else 
+        else
+          params.limit = 10
           $scope.search_params.motivations_selected = undefined
         # deselect any selected entry
         $scope.entry_selected = undefined
         # search entries in this category
-        ctrl.search()
+        ctrl.search(params)
 
       $scope.hasNextEntry = ->
         if $scope.entry_selected?
