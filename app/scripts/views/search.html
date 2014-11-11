@@ -7,13 +7,13 @@
   </leaflet>
   
   <div class="results">
+    <h1>Parcourir les annonces</h1>
     <div class="filter-box">
       <form
         name = "searchForm">
         <select
-          ng-model   = "search_params.selected_category" 
-          ng-change  = "onCategorySelected()"
-          ng-options = "cat as cat.title for cat in categories">
+          ng-model   = "search_params.selected_category"
+          ng-options = 'cat as (cat.title + " (" + cat.service_count + ")") for cat in categories'>
           <option value="">-- Choisissez une catégorie --</option>
         </select>
         <div ng-if="search_params.selected_category">
@@ -32,33 +32,67 @@
         </div>  
       </form>
     </div>
-    <h2>
-      Annonces
-      <small ng-if="results == undefined || results.length == 0">no results</small>
-      <small ng-if="results.length > 0">{{ results.length }} results</small>
-    </h2>
-    <div class="favorite-switch switch round small">
-      <span>Voir les favoris uniquement</span>
-      <input id="FavRadioSwitch" type="checkbox" ng-model="favorite_mode">
-      <label for="FavRadioSwitch"></label>
+    <div ng-show="search_params.selected_category == undefined">
+      <div class="icon-bar four-up">
+        <a class="item" ng-click="search_params.selected_category = getCategorie('sports')">
+            <img src="images/Basketball.png" > 
+            <label>Sports</label>
+        </a>
+        <a class="item" ng-click="search_params.selected_category = getCategorie('ressources')">
+            <img src="images/Recycle-Bin.png" > 
+            <label>Recyclerie</label>
+        </a>
+        <a class="item" ng-click="search_params.selected_category = getCategorie('art')">
+            <img src="images/Color.png" > 
+            <label>Arts & loisirs</label>
+        </a>
+        <a class="item" ng-click="search_params.selected_category = getCategorie('school')">
+            <img src="images/Library-Books.png" > 
+            <label>Cours et soutien scolaire</label>
+        </a>
+      </div>
+      <h2>
+        Dernières annonces
+      </h2>
+      <ul class="results_list">
+        <li 
+          ng-repeat = "result in results" 
+          id        = "entry_{{result.id}}"
+          ng-class  = "{'visited': visited_results[result.id], 'active': result.id == entry_selected.id, favorited: favorited_results[result.id]}">
+          <a
+            ng-click     = "focusOnEntry(result)"
+            ng-bind-html = "result.smart_title" ></a>
+        </li>
+      </ul>
     </div>
-    <ul>
-      <li 
-        ng-repeat = "result in results" 
-        id        = "entry_{{result.id}}"
-        ng-class  = "{'visited': visited_results[result.id], 'active': result.id == entry_selected.id, favorited: favorited_results[result.id]}">
-        <a
-          ng-click     = "focusOnEntry(result)"
-          ng-bind-html = "result.smart_title" ></a>
-      </li>
-    </ul>
+    <div ng-show="search_params.selected_category != undefined">
+      <h2>
+        Annonces
+        <small ng-if="results == undefined || results.length == 0">no results</small>
+        <small ng-if="results.length > 0">{{ results.length }} results</small>
+      </h2>
+      <div class="favorite-switch switch round small">
+        <span>Show only favorited</span>
+        <input id="FavRadioSwitch" type="checkbox" ng-model="favorite_mode">
+        <label for="FavRadioSwitch"></label>
+      </div>
+      <ul class="results_list">
+        <li 
+          ng-repeat = "result in results" 
+          id        = "entry_{{result.id}}"
+          ng-class  = "{'visited': visited_results[result.id], 'active': result.id == entry_selected.id, favorited: favorited_results[result.id]}">
+          <a
+            ng-click     = "focusOnEntry(result)"
+            ng-bind-html = "result.smart_title" ></a>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <div class="details" ng-show="entry_selected">
     <a class="close-details" ng-click="entry_selected = undefined">&#215;</a>
     <div class="details__navigation">
       <a
-        ng-class = "{disabled: !hasPreviousEntry()}"
         ng-click = "toggleFavorite(entry_selected)">
           <i
             class    = "fa"
@@ -69,7 +103,7 @@
         class    = "previous-details"
         ng-class = "{disabled: !hasPreviousEntry()}"
         ng-click = "previousEntry()"><i class="fa fa-chevron-left"></i>
-</a>
+      </a>
       <a
         class    = "next-details"
         ng-class = "{disabled: !hasNextEntry()}"

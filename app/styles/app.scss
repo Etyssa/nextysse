@@ -97,7 +97,20 @@ nav.top-bar {
         right: 5px; 
       }
     }
-    ul {
+    .categories_stars {
+      > div {
+        display: inline-block;
+        border: 1px solid black;
+        width: 150px;
+        .categories_stars__logo {
+          text-align: center;
+        }
+        .categories_stars__label {
+          text-align: center;
+        }
+      }
+    }
+    ul.results_list {
       list-style: none;
       li {
         padding-left        : 1.2em;
