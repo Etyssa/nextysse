@@ -1,5 +1,5 @@
 <div class="details__wrapper">
-  <img class="avatar" ng-src="http://www.gravatar.com/avatar/{{related_user.email_hash}}?d=retro"/>
+  <img class="avatar" ng-if="related_user.email_hash" ng-src="http://www.gravatar.com/avatar/{{related_user.email_hash}}?d=retro"/>
   <h2 ng-bind-html="entry_selected.category.title"></h2>
   <h3 ng-bind-html="entry_selected.smart_title"></h3>
   Par {{ entry_selected.creator_nickname }} {{ entry_selected.to_address.de_city }} {{ entry_selected.publish_since_text }}

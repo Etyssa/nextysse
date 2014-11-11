@@ -54,10 +54,10 @@ angular.module('seminaire2014App.directives', [])
         relayout = (zoom_on_entry_id) ->
           $timeout ->
             window_height = $(window).height()
-            details_height = Math.min(window_height, details_nui.find(".details__wrapper").outerHeight(true) + 40)
+            details_height = Math.min(window_height - 300, details_nui.find(".details__wrapper").outerHeight(true) + 40)
             details_offset_top = window_height - details_height
             details_nui.css
-              width : $(window).width() - results_list_width
+              width : $(window).width() - results_nui.outerWidth(true) - 20
               height: details_height
               right : results_nui.outerWidth(true)
               top   : details_offset_top - 45
