@@ -47,7 +47,12 @@ angular.module('seminaire2014App')
               cat: category,
               to_address  : "issy"}, (data) ->
                 console.log data 
-                $scope.profile = Profile.get()
+                Entries.get({entry_id:data.new_entry}, (entry)->  
+                  entries = $scope.profile.entries
+                  entries.push entry
+                  $scope.profile.entries = entries
+                  $scope.results = $scope.profile.entries
+                )
           )
           
 
@@ -67,4 +72,14 @@ angular.module('seminaire2014App')
           Entries.get({entry_id:entry.id}, (entry)-> $scope.entry_selected = entry)
         $scope.related_user   = Users.get({user_id:entry.creatorNickname})
 
+      $scope.onCategorySelected = ->
+        # init the motivation filter
+        if $scope.search_params.selected_category?
+          $scope.search_params.motivations_selected = angular.copy($scope.search_params.selected_category.motivations)
+        else 
+          $scope.search_params.motivations_selected = undefined
+        # deselect any selected entry
+        $scope.entry_selected = undefined
+        # search entries in this category
+      
     ])

@@ -12,22 +12,12 @@
 
 
 
-  <div class="results onLeft row">
+  <div class="results onLeft">
 
     <div class="large-6 columns">
 
-    <div class=" filter-box">
+    	<div class=" filter-box">
 
-        <dl class="tabs " data-tab>
-          <dd class="active"><a href="#panel1">Tout</a></dd>
-          <dd><a href="#profile">Suivis</a></dd>
-          <dd><a href="#profile">Partage</a></dd>
-          <dd><a href="#profile">Services</a></dd>
-          <dd><a href="#profile">Objets</a></dd>
-        </dl>
-        <div class="tabs-content">
-          <div class="content active" id="panel1" >
-             <div class="row">
 
                  <div class="row">
                     <div class="large-5  columns">
@@ -45,25 +35,27 @@
                           ng-options = "cat as cat.title for cat in categories">
                           <option value="">-- Choisissez une catégorie --</option>
                         </select>
-
                     </div>
-                    <div class="large-2  columns">
 
-                         <div ng-if="search_params.selected_category">
-                          <dl class="sub-nav">
+                    <div class="large-2  columns">
+                        <div ng-if="search_params.selected_category">
+                         	<dl class="sub-nav">
+
+                            <select ng-model="search_params.selected_category.motivations_selected" ng-options="motiv as motiv.label for motiv in search_params.selected_category.motivations">
+                              <option value="">-- Choisissez une motivation --</option>
+                            </select>
+                        <!-- 
                             <dt>Motivations : </dt>
                             <dd ng-class="{'active' : search_params.motivations_selected.length == search_params.selected_category.motivations.length }">
                             </dd>
                          
-                                                 <dd
+                            <dd
                               ng-repeat = "motivation in search_params.selected_category.motivations"
                               ng-click  = "toggleMotivation(motivation)"
                               ng-class  = "{'active': isMotivationSelected(motivation) }">
                               <a href="#profile" ng-bind-html="motivation.label" class=""></a>
 
-
-                            </dd>
-                           
+                            </dd> -->
                           </dl>
                         </div>  
                         </div>
@@ -81,19 +73,11 @@
                             <a  ng-click  = "add()" class="button">
                                 <i class  = "fa fa-plus"></i> Ajouter</a>
                         </div>
-
-                   
-
                    
                </div>
                  <div class="row"> 
-                 
-                
-
-
                      <div class="large-6 columns">
                         <ul>
-
                           <li 
                             ng-repeat = "result in profile.entries" 
                             id        = "entry_{{result.id}}"
@@ -111,56 +95,26 @@
                         </ul>
                     </div> 
                 </div>
-            </div> 
-
-          </div>
-          <div class="content" id="panel2">
-                   <select
-                      ng-model   = "search_params.selected_category" 
-                      ng-change  = "onCategorySelected()"
-                      ng-options = "cat as cat.title for cat in categories">
-                      <option value="">-- Choisissez une catégorie --</option>
-                    </select>
-          </div>
-          <div class="content" id="panel3">
-                    <select
-                      ng-model   = "search_params.selected_category" 
-                      ng-change  = "onCategorySelected()"
-                      ng-options = "cat as cat.title for cat in categories">
-                      <option value="">-- Choisissez une catégorie --</option>
-                    </select>
-          </div>
-          <div class="content" id="panel4">
-                     <select
-                      ng-model   = "search_params.selected_category" 
-                      ng-change  = "onCategorySelected()"
-                      ng-options = "cat as cat.title for cat in categories">
-                      <option value="">-- Choisissez une catégorie --</option>
-                    </select>
-          </div>
-        </div>
+            </div> <!-- filter-->
 
 
+    </div><!-- filtercolumns-->
+
+    <div class="large-3 columns">
+      <div
+        class="/details"
+        ng-show="entry_selected">
+        <a
+          class="close-details"
+          ng-click="entry_selected = undefined">&#215;</a>
+        <ng-include src="'scripts/views/entry.html'"></ng-include>
+      </div>
+
+      <pre>{{ profile | json }}</pre>
+
+    </div>
+  </div><!-- results-->
 
 
-    </div><!-- filter-->
-        
-</div><!-- columns-->
- 
-      <div class="large-3 columns">
-                 <div class="/details" ng-show="entry_selected">
-                        <a class="close-details" ng-click="entry_selected = undefined">&#215;</a>
-                        <ng-include src="'scripts/views/entry.html'"></ng-include>
-                    </div>
-            Listes correspondantes
-
-          <!--   <pre>{{ profile | json }}</pre> -->
-         
-        </div>
-
-
-
-
-</div><!-- results -->
-</div>
+</div><!-- Profile-->
     
