@@ -20,7 +20,7 @@
           <dl class="sub-nav">
             <dt>Filters:</dt>
             <dd ng-class="{'active' : search_params.motivations_selected.length == search_params.selected_category.motivations.length }">
-              <a href="#" ng-click="toggleAllFilter()">all</a>
+              <a href="#" ng-click="toggleAllFilter()">tout</a>
             </dd>
             <dd
               ng-repeat = "motivation in search_params.selected_category.motivations"
@@ -72,7 +72,7 @@
         <small ng-if="results.length > 0">{{ results.length }} results</small>
       </h2>
       <div class="favorite-switch switch round small">
-        <span>Show only favorited</span>
+        <span>Ne montrer que les favoris</span>
         <input id="FavRadioSwitch" type="checkbox" ng-model="favorite_mode">
         <label for="FavRadioSwitch"></label>
       </div>
