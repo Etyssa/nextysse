@@ -38,6 +38,9 @@ angular.module('seminaire2014App')
         else
           $scope.results = angular.copy(ctrl.results)
 
+      $scope.getCategorie = (cat_name) ->
+        _.find($scope.categories, (cat) -> cat.alias==cat_name)
+
       $scope.toggleFavorite = (entry) ->
         if $scope.favorited_results[entry.id]?
           delete $scope.favorited_results[entry.id]
@@ -68,7 +71,7 @@ angular.module('seminaire2014App')
           Entries.get({entry_id:entry.id}, (entry)-> $scope.entry_selected = entry)
         $scope.related_user   = Users.get({user_id:entry.creator_nickname})
 
-      $scope.onCategorySelected = ->
+      $scope.$watch "search_params.selected_category", ->
         params = {}
         # init the motivation filter
         if $scope.search_params.selected_category?

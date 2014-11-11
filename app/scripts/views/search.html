@@ -12,8 +12,7 @@
       <form
         name = "searchForm">
         <select
-          ng-model   = "search_params.selected_category" 
-          ng-change  = "onCategorySelected()"
+          ng-model   = "search_params.selected_category"
           ng-options = 'cat as (cat.title + " (" + cat.service_count + ")") for cat in categories'>
           <option value="">-- Choisissez une catégorie --</option>
         </select>
@@ -34,10 +33,28 @@
       </form>
     </div>
     <div ng-show="search_params.selected_category == undefined">
+      <div class="icon-bar four-up">
+        <a class="item" ng-click="search_params.selected_category = getCategorie('sports')">
+            <img src="images/Basketball.png" > 
+            <label>Sports</label>
+        </a>
+        <a class="item" ng-click="search_params.selected_category = getCategorie('ressources')">
+            <img src="images/Recycle-Bin.png" > 
+            <label>Recyclerie</label>
+        </a>
+        <a class="item" ng-click="search_params.selected_category = getCategorie('art')">
+            <img src="images/Color.png" > 
+            <label>Arts & loisirs</label>
+        </a>
+        <a class="item" ng-click="search_params.selected_category = getCategorie('school')">
+            <img src="images/Library-Books.png" > 
+            <label>Cours et soutien scolaire</label>
+        </a>
+      </div>
       <h2>
         Dernières annonces
       </h2>
-      <ul>
+      <ul class="results_list">
         <li 
           ng-repeat = "result in results" 
           id        = "entry_{{result.id}}"
@@ -59,7 +76,7 @@
         <input id="FavRadioSwitch" type="checkbox" ng-model="favorite_mode">
         <label for="FavRadioSwitch"></label>
       </div>
-      <ul>
+      <ul class="results_list">
         <li 
           ng-repeat = "result in results" 
           id        = "entry_{{result.id}}"
