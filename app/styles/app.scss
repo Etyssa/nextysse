@@ -88,6 +88,7 @@ nav.top-bar {
     .sub-nav dd {
       margin-bottom: 5px;
     }
+
     ul {
       list-style: none;
       li {
@@ -111,7 +112,46 @@ nav.top-bar {
         }
       }
     }
+
   }
+
+  .onLeft {
+    position         : absolute;
+    left             : 0;
+    right            : auto;
+    bottom           : 0;
+    top              : 0;
+    z-index          : 6;
+    width            : 100%;
+    max-width        : 2000px;
+    box-shadow       : -20px 0px 0px rgba($primary-color, 0.51);
+    background-color : white;
+    z-index          : 6;
+    overflow-y       : scroll;
+    opacity          : .95;
+    padding          : 10px;
+  }
+}
+
+
+.Profile .details {
+    position         : fixed;
+    top              : 0;
+    right            : 0;
+    z-index          : 7;
+    left             : 0;
+    width            : 5%;
+    overflow         : auto;
+    background-color : white;
+    box-shadow       : 0px -20px 0px rgba($primary-color, 0.51);
+    opacity          : .95;
+    padding          : 20px;
+    transition-property: top;
+    transition-duration: .5s;
+    &.ng-hide{
+      display : block !important;
+      top     : 1000px !important;
+    }
 }
 
 // EOF

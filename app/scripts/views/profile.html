@@ -1,3 +1,166 @@
-mes annonces
 
-<pre>{{ profile | json }}</pre>
+<h1>
+{{ profile.nickname }}
+</h1>
+
+<div class="Search Profile" relayout-search-view>
+<h2>
+  Annonces
+  <small ng-if="results == undefined || results.length == 0">no results</small>
+  <small ng-if="results.length > 0">{{ results.length }} results</small>
+</h2>
+
+
+
+  <div class="results onLeft row">
+
+    <div class="large-6 columns">
+
+    <div class=" filter-box">
+
+        <dl class="tabs " data-tab>
+          <dd class="active"><a href="#panel1">Tout</a></dd>
+          <dd><a href="#profile">Suivis</a></dd>
+          <dd><a href="#profile">Partage</a></dd>
+          <dd><a href="#profile">Services</a></dd>
+          <dd><a href="#profile">Objets</a></dd>
+        </dl>
+        <div class="tabs-content">
+          <div class="content active" id="panel1" >
+             <div class="row">
+
+                 <div class="row">
+                    <div class="large-5  columns">
+                
+             <!--            <dd
+                              ng-repeat = "cat in categories"
+                              ng-click  = "toggleMotivation(motivation)"
+                              ng-class  = "{'active': isMotivationSelected(motivation) }">
+                              <a href="#" ng-bind-html="cat.title"></a>
+                            </dd>
+                    -->
+                      <select
+                          ng-model   = "search_params.selected_category" 
+                          ng-change  = "onCategorySelected()"
+                          ng-options = "cat as cat.title for cat in categories">
+                          <option value="">-- Choisissez une catégorie --</option>
+                        </select>
+
+                    </div>
+                    <div class="large-2  columns">
+
+                         <div ng-if="search_params.selected_category">
+                          <dl class="sub-nav">
+                            <dt>Motivations : </dt>
+                            <dd ng-class="{'active' : search_params.motivations_selected.length == search_params.selected_category.motivations.length }">
+                            </dd>
+                         
+                                                 <dd
+                              ng-repeat = "motivation in search_params.selected_category.motivations"
+                              ng-click  = "toggleMotivation(motivation)"
+                              ng-class  = "{'active': isMotivationSelected(motivation) }">
+                              <a href="#profile" ng-bind-html="motivation.label" class=""></a>
+
+
+                            </dd>
+                           
+                          </dl>
+                        </div>  
+                        </div>
+
+
+                        <div class="large-6 columns">
+                            <input 
+                                type="text"
+                                class="title"
+                                placeholder="Titre"
+                              ng-model   = "search_params.title" 
+                              ng-focus  = "onTitleChange()" />
+                        </div>
+                        <div class="large-4 columns">
+                            <a  ng-click  = "add()" class="button">
+                                <i class  = "fa fa-plus"></i> Ajouter</a>
+                        </div>
+
+                   
+
+                   
+               </div>
+                 <div class="row"> 
+                 
+                
+
+
+                     <div class="large-6 columns">
+                        <ul>
+
+                          <li 
+                            ng-repeat = "result in profile.entries" 
+                            id        = "entry_{{result.id}}"
+                            ng-class  = "{'visited': visited_results[result.id], 'active': result.id == entry_selected.id}">
+                            <a
+                              ng-click     = "focusOnEntry(result)"
+                              ng-bind-html = "result.category.title" 
+                              class="medium label"
+                              ></a>
+                            <a
+                              ng-click     = "focusOnEntry(result)"
+                              ng-bind-html = "result.smart_title" 
+                              ></a>
+                          </li>
+                        </ul>
+                    </div> 
+                </div>
+            </div> 
+
+          </div>
+          <div class="content" id="panel2">
+                   <select
+                      ng-model   = "search_params.selected_category" 
+                      ng-change  = "onCategorySelected()"
+                      ng-options = "cat as cat.title for cat in categories">
+                      <option value="">-- Choisissez une catégorie --</option>
+                    </select>
+          </div>
+          <div class="content" id="panel3">
+                    <select
+                      ng-model   = "search_params.selected_category" 
+                      ng-change  = "onCategorySelected()"
+                      ng-options = "cat as cat.title for cat in categories">
+                      <option value="">-- Choisissez une catégorie --</option>
+                    </select>
+          </div>
+          <div class="content" id="panel4">
+                     <select
+                      ng-model   = "search_params.selected_category" 
+                      ng-change  = "onCategorySelected()"
+                      ng-options = "cat as cat.title for cat in categories">
+                      <option value="">-- Choisissez une catégorie --</option>
+                    </select>
+          </div>
+        </div>
+
+
+
+
+    </div><!-- filter-->
+        
+</div><!-- columns-->
+ 
+      <div class="large-3 columns">
+                 <div class="/details" ng-show="entry_selected">
+                        <a class="close-details" ng-click="entry_selected = undefined">&#215;</a>
+                        <ng-include src="'scripts/views/entry.html'"></ng-include>
+                    </div>
+            Listes correspondantes
+
+          <!--   <pre>{{ profile | json }}</pre> -->
+         
+        </div>
+
+
+
+
+</div><!-- results -->
+</div>
+    
