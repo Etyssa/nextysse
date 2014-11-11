@@ -80,9 +80,9 @@ nav.top-bar {
     width            : 50%;
     max-width        : 500px;
     box-shadow       : -20px 0px 0px rgba($primary-color, 0.51);
+    background-color : white;
     z-index          : 6;
     overflow-y       : scroll;
-    background-color : white;
     opacity          : .95;
     padding          : 10px;
     .sub-nav dd {
@@ -91,7 +91,13 @@ nav.top-bar {
     ul {
       list-style: none;
       li {
-        padding-left: 1.2em;
+        padding-left        : 1.2em;
+        transition-duration : .25s;
+        background-color    : white;
+        transition-property : background-color;
+        &.active {
+          background-color: rgba(234, 234, 234, 1);
+        }
         &:before {
           content     : '\f0a3';
           font-family : FontAwesome;
@@ -102,9 +108,6 @@ nav.top-bar {
         }
         &.visited:before {
           color : rgba($primary-color, 0.3);
-        }
-        &.active {
-          background-color: rgba(234, 234, 234, 1);
         }
       }
     }
