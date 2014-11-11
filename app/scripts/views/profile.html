@@ -1,18 +1,13 @@
 
-<h1>
-{{ profile.nickname }}
-</h1>
 
 <div class="Search Profile" relayout-search-view>
-<h2>
-  Annonces
-  <small ng-if="results == undefined || results.length == 0">no results</small>
-  <small ng-if="results.length > 0">{{ results.length }} results</small>
-</h2>
-
-
 
   <div class="results onLeft">
+
+
+<h1>
+  {{ profile.nickname }}
+</h1>
 
     <div class="large-6 columns">
 
@@ -37,13 +32,13 @@
                         </select>
                     </div>
 
-                    <div class="large-2  columns">
+                    <div class="large-8  columns">
                         <div ng-if="search_params.selected_category">
-                         	<dl class="sub-nav">
-
-                            <select ng-model="search_params.selected_category.motivations_selected" ng-options="motiv as motiv.label for motiv in search_params.selected_category.motivations">
-                              <option value="">-- Choisissez une motivation --</option>
-                            </select>
+                            <div class="large-6 columns">
+                              <select ng-model="search_params.selected_category.motivations_selected" ng-options="motiv as motiv.label for motiv in search_params.selected_category.motivations">
+                                <option value="">-- Choisissez une motivation --</option>
+                              </select>
+                            </div>
                         <!-- 
                             <dt>Motivations : </dt>
                             <dd ng-class="{'active' : search_params.motivations_selected.length == search_params.selected_category.motivations.length }">
@@ -56,9 +51,9 @@
                               <a href="#profile" ng-bind-html="motivation.label" class=""></a>
 
                             </dd> -->
-                          </dl>
-                        </div>  
-                        </div>
+                       
+
+
 
 
                         <div class="large-6 columns">
@@ -69,10 +64,16 @@
                               ng-model   = "search_params.title" 
                               ng-focus  = "onTitleChange()" />
                         </div>
+
                         <div class="large-4 columns">
                             <a  ng-click  = "add()" class="button">
                                 <i class  = "fa fa-plus"></i> Ajouter</a>
                         </div>
+                    </div>  
+                        
+                </div>
+
+
                    
                </div>
                  <div class="row"> 
