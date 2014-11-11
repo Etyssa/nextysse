@@ -27,9 +27,27 @@ angular.module('etyssa', ["etyssa.config"])
   .factory('Users',      ["$resource", "GENERAL_CONFIG", ($resource, GENERAL_CONFIG)  ->
     $resource "#{GENERAL_CONFIG.API_HOST}/rest/services/issy/users/:user_id?token=:token"   , {token:GENERAL_CONFIG.ETYSSA_API_TOKEN}, {}
   ])
-  .factory('Profile',      ["$resource", "GENERAL_CONFIG", ($resource, GENERAL_CONFIG)  ->
-    $resource "#{GENERAL_CONFIG.API_HOST}/rest/me/?token=:token"   , {token:GENERAL_CONFIG.ETYSSA_API_TOKEN}, {}
+  .factory('Profile',    ["$resource", "GENERAL_CONFIG", ($resource, GENERAL_CONFIG)  ->
+    $resource "#{GENERAL_CONFIG.API_HOST}/rest/me/?token=:token"                            , {token:GENERAL_CONFIG.ETYSSA_API_TOKEN}, {}
   ])
 
+angular.module('etyssa').factory('api',
+  ["$http", "$cookies",
+  ($http, $cookies) ->
+    init: (credential) ->
+      $http.defaults.headers.common['email']    = credential.email
+      $http.defaults.headers.common['password'] = CryptoJS.SHA1(credential.password)
+])
 
+angular.module('etyssa').factory('httpInterceptor', 
+  ["$q", "$window", "$location",
+  ($q, $window, $location) ->
+    (promise) ->
+      success = (response) ->
+        response
+      error = (response) ->
+        console.warn "httpInterceptor", response.status, response.status
+        $q.reject(response)
+      return promise.then(success)
+])
 # EOF

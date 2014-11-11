@@ -21,8 +21,10 @@ angular
     'leaflet-directive'
     'ui.router'
   ])
-  .run ($rootScope) ->
+  .run(["$rootScope", "api", ($rootScope, api) ->
+    api.init({email:"Peters.Coline@gmail.com", password:"RUCMZDMH"})
     $rootScope.$on '$viewContentLoaded', () ->
       $(document).foundation()
+  ])
 
 # EOF

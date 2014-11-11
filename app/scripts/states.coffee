@@ -1,6 +1,7 @@
 angular.module('seminaire2014App').config [
-  "$stateProvider", "$urlRouterProvider", "$locationProvider",
-  ($stateProvider, $urlRouterProvider, $locationProvider)->
+  "$stateProvider", "$urlRouterProvider", "$locationProvider", "$httpProvider",
+  ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) ->
+    $httpProvider.responseInterceptors.push('httpInterceptor')
     # $locationProvider.html5Mode true
     $urlRouterProvider.otherwise("search")
     $stateProvider

@@ -8,4 +8,8 @@
  # Controller of the seminaire2014App
 ###
 angular.module('seminaire2014App')
-  .controller 'AboutCtrl', ($scope) ->
+  .controller('ProfileCtrl',
+    ["$scope", "Profile",
+    ($scope, Profile) ->
+        $scope.profile = Profile.get()
+    ])
