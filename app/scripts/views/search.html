@@ -37,14 +37,19 @@
       <small ng-if="results == undefined || results.length == 0">no results</small>
       <small ng-if="results.length > 0">{{ results.length }} results</small>
     </h2>
+    <div class="favorite-switch switch round small">
+      <span>Show only favorited</span>
+      <input id="FavRadioSwitch" type="checkbox" ng-model="favorite_mode">
+      <label for="FavRadioSwitch"></label>
+    </div>
     <ul>
       <li 
         ng-repeat = "result in results" 
         id        = "entry_{{result.id}}"
-        ng-class  = "{'visited': visited_results[result.id], 'active': result.id == entry_selected.id}">
+        ng-class  = "{'visited': visited_results[result.id], 'active': result.id == entry_selected.id, favorited: favorited_results[result.id]}">
         <a
           ng-click     = "focusOnEntry(result)"
-          ng-bind-html = "result.smartTitle" ></a>
+          ng-bind-html = "result.smart_title" ></a>
       </li>
     </ul>
   </div>
@@ -52,14 +57,24 @@
   <div class="details" ng-show="entry_selected">
     <a class="close-details" ng-click="entry_selected = undefined">&#215;</a>
     <div class="details__navigation">
+      <a
+        ng-class = "{disabled: !hasPreviousEntry()}"
+        ng-click = "toggleFavorite(entry_selected)">
+          <i
+            class    = "fa"
+            ng-class = "favorited_results[entry_selected.id]? 'fa-star':'fa-star-o'">
+          </i>
+      </a>
       <a 
         class    = "previous-details"
         ng-class = "{disabled: !hasPreviousEntry()}"
-        ng-click = "previousEntry()">&lt;</a>
+        ng-click = "previousEntry()"><i class="fa fa-chevron-left"></i>
+</a>
       <a
         class    = "next-details"
         ng-class = "{disabled: !hasNextEntry()}"
-        ng-click = "nextEntry()">&gt;</a>
+        ng-click = "nextEntry()"><i class="fa fa-chevron-right"></i>
+</a>
     </div>
     <ng-include src="'scripts/views/entry.html'"></ng-include>
   </div>

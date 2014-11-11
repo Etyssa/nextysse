@@ -14,6 +14,7 @@ angular.module('seminaire2014App')
       ctrl = this
       $scope.search_params = {}
       $scope.visited_results = {}
+      $scope.favorited_results = {}
 
       ctrl.search = =>
         if $scope.search_params.selected_category?
@@ -26,6 +27,20 @@ angular.module('seminaire2014App')
       $scope.categories = Categories .query()
       # init results with 200 first
       ctrl.search()
+
+      # Favorite Mode
+      $scope.$watch "favorite_mode", (favorite_mode) ->
+        if $scope.favorite_mode
+          keys = Object.keys($scope.favorited_results).map((int) -> parseInt(int))
+          $scope.results = $scope.results.filter((entry)-> keys.indexOf(entry.id) > -1)
+        else
+          $scope.results = angular.copy(ctrl.results)
+
+      $scope.toggleFavorite = (entry) ->
+        if $scope.favorited_results[entry.id]?
+          delete $scope.favorited_results[entry.id]
+        else
+          $scope.favorited_results[entry.id] = true
 
       $scope.isMotivationSelected = (motivation) ->
         _.some($scope.search_params.motivations_selected, (item) -> item.alias == motivation.alias)
@@ -49,7 +64,7 @@ angular.module('seminaire2014App')
           $scope.entry_selected = entry
         else
           Entries.get({entry_id:entry.id}, (entry)-> $scope.entry_selected = entry)
-        $scope.related_user   = Users.get({user_id:entry.creatorNickname})
+        $scope.related_user   = Users.get({user_id:entry.creator_nickname})
 
       $scope.onCategorySelected = ->
         # init the motivation filter
@@ -57,6 +72,8 @@ angular.module('seminaire2014App')
           $scope.search_params.motivations_selected = angular.copy($scope.search_params.selected_category.motivations)
         else 
           $scope.search_params.motivations_selected = undefined
+        # deselect any selected entry
+        $scope.entry_selected = undefined
         # search entries in this category
         ctrl.search()
 
@@ -112,7 +129,7 @@ angular.module('seminaire2014App')
           # update map data
           if new_value?
             for result in new_value
-              markers[result.id] = {message:result.smartTitle, lat:result.to_address.latitude, lng:result.to_address.longitude, autoPan: false}
+              markers[result.id] = {message:result.smart_title, lat:result.to_address.latitude, lng:result.to_address.longitude, autoPan: false}
             angular.extend $scope,
               markers : markers
       , true)
