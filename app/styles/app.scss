@@ -67,7 +67,6 @@ nav.top-bar {
       cursor    : pointer;
     }
     img.avatar {
-      float: left;
       padding-right: 20px;
     }
   }
@@ -172,6 +171,11 @@ nav.top-bar {
     &.ng-hide{
       display : block !important;
       top     : 1000px !important;
+    }
+}
+.details__wrapper {
+    h2.subheader {
+	line-height: 1em;
     }
 }
 
