@@ -6,9 +6,8 @@
 
   <div ng-bind-html="entry_selected.detail"></div>
 
-  <div ng-if="entry_selected.links">
-      <div ng-repeat="link in entry_selected.links">
-      </div>
+  <div ng-if="entry_selected.file.file_display_url">
+      <img ng-src="{{entry_selected.file.file_display_url}}&width=300"/>
   </div>
   <!-- <pre>
   {{ entry_selected | json }}
