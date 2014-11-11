@@ -18,7 +18,7 @@
         </select>
         <div ng-if="search_params.selected_category">
           <dl class="sub-nav">
-            <dt>Filters:</dt>
+            <dt>Filtres:</dt>
             <dd ng-class="{'active' : search_params.motivations_selected.length == search_params.selected_category.motivations.length }">
               <a href="#" ng-click="toggleAllFilter()">tout</a>
             </dd>
@@ -68,8 +68,8 @@
     <div ng-show="search_params.selected_category != undefined">
       <h2>
         Annonces
-        <small ng-if="results == undefined || results.length == 0">no results</small>
-        <small ng-if="results.length > 0">{{ results.length }} results</small>
+        <small ng-if="results == undefined || results.length == 0">aucun resultat</small>
+        <small ng-if="results.length > 0">{{ results.length }} resultats</small>
       </h2>
       <div class="favorite-switch switch round small">
         <span>Ne montrer que les favoris</span>
