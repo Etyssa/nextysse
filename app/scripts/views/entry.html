@@ -1,10 +1,12 @@
 <div class="details__wrapper">
-  <img class="avatar" ng-if="related_user.email_hash" ng-src="http://www.gravatar.com/avatar/{{related_user.email_hash}}?d=retro"/>
-  <h2 ng-bind-html="entry_selected.category.title"></h2>
+  <img class="avatar left" ng-if="related_user.email_hash" ng-src="http://www.gravatar.com/avatar/{{related_user.email_hash}}?d=retro"/>
+  <h2 class="subheader" ng-bind-html="entry_selected.category.title"></h2>
   <h3 ng-bind-html="entry_selected.smart_title"></h3>
-  Par {{ entry_selected.creator_nickname }} {{ entry_selected.to_address.de_city }} {{ entry_selected.publish_since_text }}
-
-  <div ng-bind-html="entry_selected.detail"></div>
+  Par <strong>{{ entry_selected.creator_nickname }}</strong> {{ entry_selected.to_address.de_city }} {{ entry_selected.publish_since_text }}
+  
+  <div class="panel">
+    <div ng-bind-html="entry_selected.detail "></div>
+  </div>
 
   <div ng-if="entry_selected.file.file_display_url">
       <img ng-src="{{entry_selected.file.file_display_url}}&width=300"/>
@@ -13,5 +15,16 @@
   {{ entry_selected | json }}
   {{ related_user   | json }}
   </pre> -->
-  
+  <div 
+    class         = "Contact-form" 
+    ng-class      = "{'loading': loading}"
+    ng-show       = "contact_form.show"
+    ng-controller = "ContactCtrl">
+    <h3>Répondre</h3>
+    <textarea ng-model="answer"></textarea>
+    <a 
+      class="button small right"
+      ng-click="answerToEntry(entry_selected)">Envoyer</a>
+    <div class="clearfix"></div>
+  </div>
 </div>

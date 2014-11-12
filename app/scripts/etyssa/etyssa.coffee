@@ -30,6 +30,9 @@ angular.module('etyssa', ["etyssa.config"])
   .factory('Profile',    ["$resource", "GENERAL_CONFIG", ($resource, GENERAL_CONFIG)  ->
     $resource "#{GENERAL_CONFIG.API_HOST}/rest/me/?token=:token"                            , {token:GENERAL_CONFIG.ETYSSA_API_TOKEN}, {}
   ])
+  .factory('Message',    ["$resource", "GENERAL_CONFIG", ($resource, GENERAL_CONFIG)  ->
+    $resource "#{GENERAL_CONFIG.API_HOST}/rest/messages/?token=:token"                      , {token:GENERAL_CONFIG.ETYSSA_API_TOKEN}, {}
+  ])
 
 angular.module('etyssa').factory('api',
   ["$http", "$cookies",
