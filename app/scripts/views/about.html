@@ -1,4 +1,121 @@
-<p>That is the team</p>
+<div class="row about">
+  <p class="large-8 columns">
+    Qu’est ce que une API ?  C’est une façade par laquelle un
+    logiciel offre des services à d'autres logiciels. Elle est offerte
+    par une bibliothèque logicielle ou un service web, le plus souvent
+    accompagnée d'une description qui spécifie comment des programmes
+    consommateurs peuvent se servir des fonctionnalités du programme
+    fournisseur .
+  </p>
+  <p class="large-4 columns">
+    <i class="fa fa-exchange fa-6"></i>
+  </p>
 
-<img src="images/ed_and_ol.jpg" />
-<img src="images/seb.jpg" />
+  <p class="large-4 columns">
+  </p>
+  <p class="large-8 columns">
+    Etyssa met à disposition une API REST, soit un ensemble structuré
+    d’URLs permettant de directement consulter et éditer vos données
+    de plate-formes. Il y a au moins deux cas d’utilisations de ces données : 
+    <ul>
+      <li>
+	Etyssa consomme ces données et les intègre aux plate-formes
+	habituelles
+      </li>
+      <li>
+	Les collectivités du réseau, Etyssa ou des développeurs
+	extérieurs réalisent des applications qui viennent s’ajouter
+	aux plate-formes classiques
+      </li>
+    </ul>
+  </p>
+
+  <p>
+    L’API va vous offrir une grande liberté dans la façon dont vous
+    souhaitez traiter et afficher vos données. Cela laisse la place à
+    une dimension expérimentale importante et vous permet de réaliser
+    des projets non prévus à priori par les modules classiques des
+    applications (sous réserve d’étude préalable par nos soins).
+  </p>
+  <p>
+    Voici une liste (non exhaustive) des données qui peuvent être consultées :
+    <ul>
+      <li>
+	Le réseau
+	<tt>GET http://api.etyssa.com/rest/services</tt></li>
+      <li>
+	Tous les utilisateurs d’un service
+	<tt>GET http://api.etyssa.com/rest/services/{serviceId}/users</tt>
+      </li>
+      <li>
+	Un d’utilisateur d’un service
+	<tt>GET
+	http://api.etyssa.com/rest/services/{serviceId}/users/{userId}</tt>
+      </li>
+      <li>
+	Toutes les annonces d’un service
+	<tt>GET http://api.etyssa.com/rest/services/{serviceId}/entries</tt>
+      </li>
+      <li>
+	Une annonce d’un service
+	<tt>GET http://api.etyssa.com/rest/services/{serviceId}/entries/{entryId}</tt>
+      </li>
+      <li>
+	Tous les univers d'un service
+	<tt>GET “http://api.etyssa.com/rest/services/{serviceId}/categories</tt>
+      </li>
+      <li>
+	Informations sur un service 
+	<tt>GET http://api.etyssa.com/rest/services/{serviceId}”</tt>
+      </li>
+      <li>
+	Ajouter une annonce
+	<tt>POST http://api.etyssa.com/rest/services/{serviceId}/entries” (avec authentification)</tt>
+      </li>
+      <li>
+	Tous les univers d’un service
+	<tt>GET http://api.etyssa.com/rest/services/{serviceId}/categories</tt>     
+      </li>
+      <li>etc.</li>
+    </ul>
+  </p> 
+  <p class="large-4 columns">
+  </p>
+
+  <p>
+    Par rapport à l’ouverture de l’application d’Etyssa en license
+    Libre et / ou Open Source, la consommation de l’API vous laisse plus
+    de libertés dans les technologies utilisées (vous pouvez utiliser
+    celle de votre choix, ce qui demande peu d’investissements et vous
+    permet de manipuler l’API avec les outils de votre choix). Vous
+    n’avez pas de serveur ni de base de données à gérer.
+  </p>
+  
+  <p>
+    Pour Etyssa, le développement de l’API ouvre la voie à
+    l’utilisation de technologies beaucoup plus modernes, basées sur des
+    outils Open Source, tout en se reposant sur les socles éprouvés de
+    notre moteur de profiling et une base de données bien garnie.
+
+    Les atouts sont la rapidité, flexibilité, réactivité (JS client),
+    l' angularité.
+  </p>
+  <p>
+    Présentation de l'implémentation réalisées par Edouard &
+    Etyssa
+
+    Pendant 10 jours, Etyssa a travaillé en collaboration avec Edouard
+    Richard lors d'un hackathon en novembre 2014 afin... 
+    TODO Technologies utilisées : JSON, Node.js, Angular.js, CoffeeScript
+    TODO liens Twitter, Github
+
+    TODO récupérer les sources
+    https://bitbucket.org/scriptx/nextysse
+  </p>
+</div>
+<div class="row">
+  <p>That is the team</p>
+
+  <img src="images/ed_and_ol.jpg" />
+  <img src="images/seb.jpg" />
+</div>
