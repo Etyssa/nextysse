@@ -99,6 +99,13 @@
             ng-class = "favorited_results[entry_selected.id]? 'fa-star':'fa-star-o'">
           </i>
       </a>
+      <a>
+        <i 
+          class    = "fa" 
+          ng-class = "contact_form.show? 'fa-envelope':'fa-envelope-o'"
+          ng-click = "contact_form.show = !contact_form.show">
+        </i>
+      </a>
       <a 
         class    = "previous-details"
         ng-class = "{disabled: !hasPreviousEntry()}"
