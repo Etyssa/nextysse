@@ -20,13 +20,13 @@
           <dl class="sub-nav">
             <dt>Filtres:</dt>
             <dd ng-class="{'active' : search_params.motivations_selected.length == search_params.selected_category.motivations.length }">
-              <a href="#" ng-click="toggleAllFilter()">tout</a>
+              <a href="#" ng-click="toggleAllFilter()"><i class="fa fa-tag"></i>tout</a>
             </dd>
             <dd
               ng-repeat = "motivation in search_params.selected_category.motivations"
               ng-click  = "toggleMotivation(motivation)"
               ng-class  = "{'active': isMotivationSelected(motivation) }">
-              <a href="#" ng-bind-html="motivation.label"></a>
+              <a href="#"><i class="fa fa-tag"></i><span ng-bind-html="motivation.label"></span></a>
             </dd>
           </dl>
         </div>  
