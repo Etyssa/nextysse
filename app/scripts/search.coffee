@@ -16,6 +16,7 @@ angular.module('seminaire2014App')
       $scope.visited_results   = {}
       $scope.favorited_results = {}
       $scope.favorite_mode     = no
+      $scope.contact_form      = {show:no}
 
       ctrl.search = (params) =>
         params = params or {}
@@ -140,7 +141,6 @@ angular.module('seminaire2014App')
             angular.extend $scope,
               markers : markers
       , true)
-
       # on marker click
       $scope.$on 'leafletDirectiveMarker.click', (e, args) ->
         entity_id = parseInt(args.markerName)

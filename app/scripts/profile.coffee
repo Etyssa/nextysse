@@ -20,6 +20,8 @@ angular.module('seminaire2014App')
       $scope.categories = Categories .query()
 
 
+
+
       $scope.onCategorySelected = ->
         # init the motivation filter
         if $scope.search_params.selected_category?
@@ -54,13 +56,17 @@ angular.module('seminaire2014App')
                   $scope.results = $scope.profile.entries
                 )
           )
-          
-
+      $scope.delete =  (entry) -> 
+        console.log "delete !" 
+        ctrl.results = Entries.delete({  
+            entryId        : entry
+        })
       $scope.remove = ->
         console.log "REMOVE !" 
 
       $scope.onTitleChange = ->
         $scope.search_params.title = $scope.title 
+
 
 
       $scope.focusOnEntry = (entry) =>

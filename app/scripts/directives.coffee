@@ -26,11 +26,11 @@ angular.module('seminaire2014App.directives', [])
         results_nui = element.find(".results")
         details_nui = element.find(".details")
         results_list_width = results_nui.outerWidth(true) + 20
-        fit_map_bounds_to_markers = (offset_bottom_right, zoom_on_entry_id) ->
+        fit_map_bounds_to_markers = (offset_bottom_right, zoom_on_entry) ->
           leafletData.getMap().then (map) ->
             leafletData.getMarkers().then (markers) ->
-              if zoom_on_entry_id?
-                marker = markers[zoom_on_entry_id]
+              if zoom_on_entry?
+                marker = markers[zoom_on_entry.id]
                 marker.openPopup()
                 # set an offset
                 map.setView(marker._latlng, 15)
@@ -45,13 +45,13 @@ angular.module('seminaire2014App.directives', [])
                   map.fitBounds groups,
                     paddingBottomRight: [offset_bottom_right[0], offset_bottom_right[1]]
                 map.closePopup()
-        fit_map_bounds_to_markers_depending_of_details_panel =  (zoom_on_entry_id) ->
+        fit_map_bounds_to_markers_depending_of_details_panel =  (zoom_on_entry) ->
           $timeout ->
             if element.find(".details").hasClass("ng-hide")
-              fit_map_bounds_to_markers([results_list_width, 0], zoom_on_entry_id)
+              fit_map_bounds_to_markers([results_list_width, 0], zoom_on_entry)
             else
-              fit_map_bounds_to_markers([results_list_width, details_nui.outerHeight(true) + 20], zoom_on_entry_id)
-        relayout = (zoom_on_entry_id) ->
+              fit_map_bounds_to_markers([results_list_width, details_nui.outerHeight(true) + 20], zoom_on_entry)
+        relayout = (zoom_on_entry) ->
           $timeout ->
             window_height = $(window).height()
             details_height = Math.min(window_height - 300, details_nui.find(".details__wrapper").outerHeight(true) + 40)
@@ -61,16 +61,17 @@ angular.module('seminaire2014App.directives', [])
               height: details_height
               right : results_nui.outerWidth(true)
               top   : details_offset_top - 45
-            fit_map_bounds_to_markers_depending_of_details_panel(zoom_on_entry_id)
+            fit_map_bounds_to_markers_depending_of_details_panel(zoom_on_entry)
         # first relayout
         relayout()
         # bind events
-        angular.element($window).resize -> relayout()
+        angular.element($window).resize -> relayout(scope.entry_selected)
+        scope.$watch "contact_form.show", (show) -> relayout(scope.entry_selected)
         # follow the results to fit the map bounds regarding the markers
         scope.$watch "results", -> fit_map_bounds_to_markers_depending_of_details_panel()
         # follow the details view to ajust the map and the details panel size
         scope.$watch "entry_selected", (entry, e) ->
-          relayout(if entry? then entry.id else undefined)
+          relayout(entry)
     ])
 
 # EOF

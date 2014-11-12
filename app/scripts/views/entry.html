@@ -15,5 +15,16 @@
   {{ entry_selected | json }}
   {{ related_user   | json }}
   </pre> -->
-  
+  <div 
+    class         = "Contact-form" 
+    ng-class      = "{'loading': loading}"
+    ng-show       = "contact_form.show"
+    ng-controller = "ContactCtrl">
+    <h3>Répondre</h3>
+    <textarea ng-model="answer"></textarea>
+    <a 
+      class="button small right"
+      ng-click="answerToEntry(entry_selected)">Envoyer</a>
+    <div class="clearfix"></div>
+  </div>
 </div>

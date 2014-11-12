@@ -153,7 +153,11 @@ nav.top-bar {
   }
 }
 
-
+.Contact-form {
+  &.loading {
+    opacity: .2;
+  }
+}
 .Profile .details {
     position         : fixed;
     top              : 0;
@@ -186,5 +190,9 @@ i.fa {
 div.about.row .columns {
     min-height: 250px;
 }
-
+.Profile {
+  h1 {
+    font-size:0.8em;
+  }
+}
 // EOF
