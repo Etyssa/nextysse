@@ -3,6 +3,8 @@
 @import "foundation";
 
 $top-image: url("/images/logo.png");
+$etyssa-blue: #04a2c5;
+$etyssa-orange: #f68712;
 
 nav.top-bar {
   z-index: 7;
@@ -223,6 +225,31 @@ div.about.row .columns {
 
     section {
 	display: block;
+	.panel {
+	    opacity: 0.7;
+	}
+    }&
+    section#platforms {
+	background: url("/images/platforms.png") repeat-x #000;
+	margin-bottom: 0;
+	padding-bottom: 0;
+    }
+    section#api-how {
+	background-color: #000;
+	p.columns {
+	    color: #4D4C4C;
+	}
+    }
+    section#api-endpoints {
+	background-color: $etyssa-blue;
+	.circular {
+	    width                 : 300px;
+	    height                : 300px;
+	    border-radius         : 150px;
+	    -webkit-border-radius : 150px;
+	    -moz-border-radius    : 150px;
+	    background            : url("/images/datacenter-thurdays.png") no-repeat;
+	}
     }
 }
 
@@ -244,5 +271,7 @@ footer {
   p {
       font-size: 80%;
   }
+}
+
 
 // EOF
