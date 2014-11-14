@@ -22,7 +22,7 @@ angular.module('seminaire2014App')
         # iterate over services to create an propulse marker on the map
         for service in services
           if parseInt(service.status) == 2
-            markers[service.nickname.replace(/-/g, "")] = {message:service.nickname, lat:service.place.latitude, lng:service.place.longitude}
+            markers[service.place.city.replace(/-/g, "")] = {message:service.place.city, lat:service.place.latitude, lng:service.place.longitude}
         angular.extend $scope,
           markers : markers
         # when markers are ready
