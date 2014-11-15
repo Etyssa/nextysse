@@ -28,7 +28,11 @@ angular.module('seminaire2014App').config [
       .state 'profile',
         url: "/profile"
         templateUrl: "scripts/views/profile.html"
-        controller: "ProfileCtrl"             
+        controller: "ProfileCtrl"   
+      .state 'column',
+        url: "/column"
+        templateUrl: "scripts/views/column.html"
+        controller: "ColumnCtrl"      
 ]
 
 # EOF

@@ -22,8 +22,10 @@ angular
     'ui.router'
   ])
   .run(["$rootScope", "api", ($rootScope, api) ->
-    api.init({email:"Peters.Coline@gmail.com", password:"RUCMZDMH"})
+    #api.init({email:"Peters.Coline@gmail.com", password:"RUCMZDMH"})
+    api.init({email:"olivier@etyssa.fr", password:"coucou"})
     $rootScope.$on '$viewContentLoaded', () ->
+
       $(document).foundation()
   ])
 

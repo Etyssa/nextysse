@@ -1,0 +1,46 @@
+
+
+<div
+  class="Columnyss"
+  ng-controller = ""
+  relayoutColumnView
+>
+
+<div  class="wrapper">
+  <nav>
+    <ul  class="button-group" ng-repeat="cat in categories">
+      <li class="button">
+        {{cat.title}}
+      </li>
+    </ul>
+  </nav>
+
+equalizer
+  <div class="row" ng-repeat="cat in categories">
+    <div class="colums large-5 "   ng-model="selected">
+      <div  id        = "entry_{{result.id}}">
+        <a
+          ng-click     = "focusOnEntry(result)"
+          ng-bind-html = "result.smart_title" >
+
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="row" ng-repeat="column in columns"><a href=""></a>
+    <div class="colums large-5 "   ng-model="selected">
+      {{column | json }}aa
+      <div  id        = "entry_{{result.id}}">dza
+        <a
+          ng-click     = "focusOnEntry(result)"
+          ng-bind-html = "result.smart_title" >
+
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
