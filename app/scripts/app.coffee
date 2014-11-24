@@ -20,6 +20,7 @@ angular
     'ngTouch'
     'leaflet-directive'
     'ui.router'
+    'cgNotify'
   ])
   .run(["$rootScope", "api", ($rootScope, api) ->
     api.init({email:"olivoelement", password:"coucou"})
