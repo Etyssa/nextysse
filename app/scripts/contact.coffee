@@ -18,8 +18,9 @@ angular.module('seminaire2014App')
         $scope.loading           = no
         $scope.contact_form.show = no
         $scope.answer            = ""
-        notify("Message envoyé à #{entry.creator_nickname}")
+        notify({message:"Message envoyé à #{entry.creator_nickname}", classes:["alert-success"]})
       , (error) ->
+        notify({message:"Une erreur est survenue.", classes:["alert-danger"]})
         console.error "error", error
   ])
 
