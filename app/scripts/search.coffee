@@ -65,6 +65,8 @@ angular.module('seminaire2014App')
 
       $scope.focusOnEntry = (entry) =>
         $scope.visited_results[entry.id] = true
+        # hide message textarea
+        $scope.contact_form.show = no
         # retrieve the entry if the given entry is a light version
         if entry.creation_date?
           $scope.entry_selected = entry
