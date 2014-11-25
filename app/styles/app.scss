@@ -163,26 +163,6 @@ nav.top-bar {
   }
 }
 
-.Profile .details {
-    position         : fixed;
-    top              : 0;
-    right            : 0;
-    z-index          : 7;
-    left             : 0;
-    width            : 5%;
-    overflow         : auto;
-    background-color : white;
-    box-shadow       : 0px -20px 0px rgba($primary-color, 0.51);
-    opacity          : .95;
-    padding          : 20px;
-    transition-property: top;
-    transition-duration: .5s;
-    &.ng-hide{
-      display : block !important;
-      top     : 1000px !important;
-    }
-}
-
 .details__wrapper {
     h2.subheader {
 	line-height: 1em;
@@ -197,14 +177,6 @@ div.about.row .columns {
     min-height: 250px;
 }
 
-.Profile {
-  h1 {
-    font-size:0.8em;
-  }
-}
-.profile_header{
-    
-}
 .about {
     .circular {
 	width                 : 150px;
