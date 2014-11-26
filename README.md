@@ -7,12 +7,28 @@ In order to test and improve our new API, here is an implementation of our main 
 
 ## Installation
 
-`npm install` 
-`bower install`
+    npm install 
+    bower install
 
 ## Run the server
 
-`grunt serve`
+    grunt serve
+
+## Deploy to scriptx.bitbucket.org
+
+    from fabric.api import *
+	from fabric.context_managers import settings
+
+    REMOTE_REPO = "git@bitbucket.org:scriptx/scriptx.bitbucket.org.git"
+	def prod():
+        # local("git checkout master")
+	    local("make freeze")
+		with lcd("dist"):
+		local("git init")
+		local("git add .")
+		local("git commit -m 'publishing'")
+		local("git push %s master:master --force" % (REMOTE_REPO))
+    # EOF
 
 ## Contributors
 * doud
