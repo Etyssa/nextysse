@@ -254,6 +254,7 @@ div.about.row .columns {
 }
 
 .overview.container {
+    height: 100%;
     .columns.large-10 {
 	padding-left : 0;
 	display: block;
@@ -263,9 +264,9 @@ div.about.row .columns {
 footer {
   width: 100%;
   margin: 0;
-  position: relative;
+  /* position: relative;*/
   min-height: 150px;
-  bottom: 0;
+  bottom: 0px;
   background-color: #2F2F2F;
   color: #c6c6c6;
   p {
