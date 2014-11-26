@@ -184,7 +184,6 @@ nav.top-bar {
       top     : 1000px !important;
     }
 }
-
 .details__wrapper {
     h2.subheader {
 	line-height: 1em;
@@ -207,9 +206,10 @@ div.about.row .columns {
 .profile_header{
     
 }
+
 .about {
     .circular {
-	width                 : 150px;
+    	width                 : 150px;
 	height                : 150px;
 	border-radius         : 75px;
 	-webkit-border-radius : 75px;
@@ -272,6 +272,4 @@ footer {
       font-size: 80%;
   }
 }
-
-
 // EOF
