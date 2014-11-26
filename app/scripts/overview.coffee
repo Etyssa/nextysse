@@ -13,7 +13,7 @@ angular.module('seminaire2014App')
     ($scope, Services, leafletData, $timeout) ->
       angular.extend $scope,
         tiles:
-          url: "http://c.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg"
+          url: "https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png"
         markers: {}
 
       Services.query (services) ->
