@@ -28,8 +28,6 @@ angular.module('seminaire2014App')
       # loads data and provide them to the scope
       $scope.service    = Services   .get({service_name: "issy"})
       $scope.categories = Categories .query()
-      # init results with 200 first
-      ctrl.search({limit:10})
 
       # Favorite Mode
       $scope.$watch "favorite_mode", (favorite_mode) ->
@@ -80,6 +78,7 @@ angular.module('seminaire2014App')
         if $scope.search_params.selected_category?
           $scope.search_params.motivations_selected = angular.copy($scope.search_params.selected_category.motivations)
         else
+          # no category selected
           params.limit = 10
           $scope.search_params.motivations_selected = undefined
         # deselect any selected entry
