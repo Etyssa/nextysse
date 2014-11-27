@@ -65,8 +65,8 @@ nav.top-bar {
       content   :'×';
       position  : absolute;
       right     : 10px;
-      top       : -23px;
-      font-size : 4em;
+      top       : -10px;
+      font-size : 3em;
       cursor    : pointer;
     }
     img.avatar {
@@ -258,6 +258,10 @@ div.about.row .columns {
     }
 
     section#why {
+	background-color: $etyssa-grey;
+	p, h2 {
+	    color: #333;
+	}
 	.circular {
 	    width                 : 300px;
 	    height                : 300px;
@@ -268,10 +272,22 @@ div.about.row .columns {
 	}
     }
 
-    section#modern,
-    section#why,
-    section#freedom {
-	background-color: $etyssa-grey;
+    section#hack {
+	.techno span {
+	    font-size: 110%;
+	}
+	.circular.doud {
+	    width                 : 300px;
+	    height                : 300px;
+	    border-radius         : 150px;
+	    -webkit-border-radius : 150px;
+	    -moz-border-radius    : 150px;
+	    background            : url("/images/doud.png") no-repeat;
+	    img {
+		width: 300px;
+		height: 300px;
+	    }
+	}
     }
 
     section#team {
