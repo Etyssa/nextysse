@@ -20,12 +20,11 @@ angular
     'ngTouch'
     'leaflet-directive'
     'ui.router'
+    'cgNotify'
   ])
   .run(["$rootScope", "api", ($rootScope, api) ->
-    #api.init({email:"Peters.Coline@gmail.com", password:"RUCMZDMH"})
-    api.init({email:"olivier@etyssa.fr", password:"coucou"})
+    api.init({email:"olivoelement", password:"coucou"})
     $rootScope.$on '$viewContentLoaded', () ->
-
       $(document).foundation()
   ])
 

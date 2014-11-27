@@ -9,8 +9,8 @@
 ###
 angular.module('seminaire2014App')
   .controller('ContactCtrl',
-  ["$scope", "$timeout", "Message",
-  ($scope, $timeout, Message) ->
+  ["$scope", "$timeout", "Message", "notify",
+  ($scope, $timeout, Message, notify) ->
     $scope.loading = no
     $scope.answerToEntry = (entry) ->
       $scope.loading = yes
@@ -18,7 +18,9 @@ angular.module('seminaire2014App')
         $scope.loading           = no
         $scope.contact_form.show = no
         $scope.answer            = ""
+        notify({message:"Message envoyé à #{entry.creator_nickname}", classes:["alert-success"]})
       , (error) ->
+        notify({message:"Une erreur est survenue.", classes:["alert-danger"]})
         console.error "error", error
   ])
 

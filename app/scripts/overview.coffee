@@ -13,7 +13,7 @@ angular.module('seminaire2014App')
     ($scope, Services, leafletData, $timeout) ->
       angular.extend $scope,
         tiles:
-          url: "http://c.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg"
+          url: "https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png"
         markers: {}
 
       Services.query (services) ->
@@ -22,7 +22,9 @@ angular.module('seminaire2014App')
         # iterate over services to create an propulse marker on the map
         for service in services
           if parseInt(service.status) == 2
-            markers[service.place.city.replace(/-/g, "")] = {message:service.place.city, lat:service.place.latitude, lng:service.place.longitude}
+            markers[service.city.replace(/-/g, "")] = {message:service.city, lat:service.address.latitude, lng:service.address.longitude}
+            # Could be better to dispaly the city name
+            # markers[service.place.city.replace(/-/g, "")] = {message:service.place.city, lat:service.place.latitude, lng:service.place.longitude}
         angular.extend $scope,
           markers : markers
         # when markers are ready

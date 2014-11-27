@@ -1,103 +1,102 @@
 <div class="about">
-  <header class="row">
-    <h1>L'API REST</h1>
-    <h2>Une nouvelle façon d'intéragir avec les plate-formes</h2>
-  </header>
-  <section class="row">
-    <p class="large-8 columns">
-      Qu’est ce que une API ?  C’est une façade par laquelle un
-      logiciel offre des services à d'autres logiciels. Elle est offerte
-      par une bibliothèque logicielle ou un service web, le plus souvent
-      accompagnée d'une description qui spécifie comment des programmes
-      consommateurs peuvent se servir des fonctionnalités du programme
-      fournisseur .
-    </p>
-    <p class="large-4 columns circular">
-      <img src="/images/doud.jpg" alt="C'est Doud" />
-    </p>
+  <section class="container" id="platforms">
+    <div class="row">
+      <h1>L'API REST</h1>
+      <h2>Une nouvelle façon d'interagir avec les plate-formes</h2>
+      <p class="large-8 columns panel">
+	Qu’est ce que une API ?  C’est une façade par laquelle un
+	logiciel offre des services à d'autres logiciels. Elle est offerte
+	par une bibliothèque logicielle ou un service web, le plus souvent
+	accompagnée d'une description qui spécifie comment des programmes
+	consommateurs peuvent se servir des fonctionnalités du programme
+	fournisseur .
+      </p>
+      <p class="large-8 columns panel right">
+	Etyssa met à disposition une API REST, soit un ensemble structuré
+	d’URLs permettant de directement consulter et éditer vos données
+	de plate-formes. Il y a au moins deux cas d’utilisations de ces
+	données :
+	<ul class="large-8 columns panel right">
+	  <li>
+	    Etyssa les <em>consomme</em> ces données et les intègre aux plate-formes
+	    habituelles
+	  </li>
+	  <li>
+	    Les collectivités du réseau, Etyssa ou des développeurs
+	    extérieurs réalisent des applications qui viennent s’ajouter
+	    aux plate-formes classiques
+	  </li>
+	  <li>Des utilisateurs du service, des associations peuvent
+	    également participer</li>
+	</ul>
+      </p>
+      <p class="large-4 columns circular">
+	<img src="/images/doud.jpg" alt="C'est Doud" />
+      </p>
+    </div>
   </section>
-  <section class="row">
-    <p class="large-4 columns circular">
-      <img src="/images/doud.jpg" alt="C'est Doud" />
-    </p>
-    <p class="large-8 columns">
-      Etyssa met à disposition une API REST, soit un ensemble structuré
-      d’URLs permettant de directement consulter et éditer vos données
-      de plate-formes. Il y a au moins deux cas d’utilisations de ces
-      données :
-      <ul class="large-8 columns">
-      <li>
-	Etyssa les <em>consomme</em> ces données et les intègre aux plate-formes
-	habituelles
-	</li>
-      <li>
-	Les collectivités du réseau, Etyssa ou des développeurs
-	extérieurs réalisent des applications qui viennent s’ajouter
-	aux plate-formes classiques
-      </li>
-      <li>Des utilisateurs du service, des associations peuvent
-      également participer</li>
-    </ul>
-  </p>
+  <section class="container" id="api-how">
+    <div class="row">
+      <p class="large-8 columns">
+	L’API va vous offrir une grande liberté dans la façon dont vous
+	souhaitez traiter et afficher vos données. Cela laisse la place à
+	une dimension expérimentale importante et vous permet de réaliser
+	des projets non prévus à priori par les modules classiques des
+	applications (sous réserve d’étude préalable par nos soins).
+      </p>
+      <p class="large-4 columns circular">
+	<img src="/images/doud.jpg" alt="C'est Doud" />
+      </p>
+    </div>
   </section>
-  <section class="row">
-    <p class="large-8 columns">
-      L’API va vous offrir une grande liberté dans la façon dont vous
-      souhaitez traiter et afficher vos données. Cela laisse la place à
-      une dimension expérimentale importante et vous permet de réaliser
-      des projets non prévus à priori par les modules classiques des
-      applications (sous réserve d’étude préalable par nos soins).
-    </p>
-    <p class="large-4 columns circular">
-      <img src="/images/doud.jpg" alt="C'est Doud" />
-    </p>
-  </section>
-  <section class="row">
-    <p class="large-4 columns circular">
-      <img src="/images/doud.jpg" alt="C'est Doud" />
-    </p>
-    <p class="large-8 columns">
-      Voici une liste (non exhaustive) des données qui peuvent être consultées :
-      <ul class="large-8 columns">
-	<li>
-	  Le réseau
-	<tt>GET http://api.etyssa.com/rest/services</tt></li>
-	<li>
-	  Tous les utilisateurs d’un service
-	  <tt>GET http://api.etyssa.com/rest/services/{serviceId}/users</tt>
-	</li>
-	<li>
-	  Un d’utilisateur d’un service
-	  <tt>GET
-	    http://api.etyssa.com/rest/services/{serviceId}/users/{userId}</tt>
-	</li>
-	<li>
-	Toutes les annonces d’un service
-	<tt>GET http://api.etyssa.com/rest/services/{serviceId}/entries</tt>
-	</li>
-	<li>
-	  Une annonce d’un service
-	  <tt>GET http://api.etyssa.com/rest/services/{serviceId}/entries/{entryId}</tt>
-	</li>
-	<li>
-	  Tous les univers d'un service
-	  <tt>GET “http://api.etyssa.com/rest/services/{serviceId}/categories</tt>
-	</li>
-	<li>
-	  Informations sur un service 
-	  <tt>GET http://api.etyssa.com/rest/services/{serviceId}”</tt>
-	</li>
-	<li>
-	  Ajouter une annonce
-	  <tt>POST http://api.etyssa.com/rest/services/{serviceId}/entries” (avec authentification)</tt>
-	</li>
-      <li>
-	Tous les univers d’un service
-	<tt>GET http://api.etyssa.com/rest/services/{serviceId}/categories</tt>     
-      </li>
-	<li>etc.</li>
-      </ul>
-    </p> 
+  <section class="container" id="api-endpoints">
+    <div class="row">
+      <p class="large-4 columns circular">
+	<img src="/images/datacenter-thurdays.png" alt="C'est un datacenter vu de près" />
+      </p>
+      <p class="large-8 columns right">
+	Voici une liste (non exhaustive) des données qui peuvent être consultées :
+	<ul class="large-8 columns right">
+	  <li>
+	    Le réseau
+	    <tt>GET http://api.etyssa.com/rest/services</tt></li>
+	  <li>
+	    Tous les utilisateurs d’un service
+	    <tt>GET http://api.etyssa.com/rest/services/{serviceId}/users</tt>
+	  </li>
+	  <li>
+	    Un d’utilisateur d’un service
+	    <tt>GET
+	      http://api.etyssa.com/rest/services/{serviceId}/users/{userId}</tt>
+	  </li>
+	  <li>
+	    Toutes les annonces d’un service
+	    <tt>GET http://api.etyssa.com/rest/services/{serviceId}/entries</tt>
+	  </li>
+	  <li>
+	    Une annonce d’un service
+	    <tt>GET http://api.etyssa.com/rest/services/{serviceId}/entries/{entryId}</tt>
+	  </li>
+	  <li>
+	    Tous les univers d'un service
+	    <tt>GET “http://api.etyssa.com/rest/services/{serviceId}/categories</tt>
+	  </li>
+	  <li>
+	    Informations sur un service 
+	    <tt>GET http://api.etyssa.com/rest/services/{serviceId}”</tt>
+	  </li>
+	  <li>
+	    Ajouter une annonce
+	    <tt>POST http://api.etyssa.com/rest/services/{serviceId}/entries” (avec authentification)</tt>
+	  </li>
+	  <li>
+	    Tous les univers d’un service
+	    <tt>GET http://api.etyssa.com/rest/services/{serviceId}/categories</tt>     
+	  </li>
+	  <li>etc.</li>
+	</ul>
+      </p> 
+    </div>
   </section>
   <section class="row">
     <p class="large-4 columns circular">

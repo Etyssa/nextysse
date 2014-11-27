@@ -3,6 +3,8 @@
 @import "foundation";
 
 $top-image: url("/images/logo.png");
+$etyssa-blue: #04a2c5;
+$etyssa-orange: #f68712;
 
 nav.top-bar {
   z-index: 7;
@@ -182,7 +184,6 @@ nav.top-bar {
       top     : 1000px !important;
     }
 }
-
 .details__wrapper {
     h2.subheader {
 	line-height: 1em;
@@ -205,9 +206,10 @@ div.about.row .columns {
 .profile_header{
     
 }
+
 .about {
     .circular {
-	width                 : 150px;
+    	width                 : 150px;
 	height                : 150px;
 	border-radius         : 75px;
 	-webkit-border-radius : 75px;
@@ -223,10 +225,36 @@ div.about.row .columns {
 
     section {
 	display: block;
+	.panel {
+	    opacity: 0.7;
+	}
+    }&
+    section#platforms {
+	background: url("/images/platforms.png") repeat-x #000;
+	margin-bottom: 0;
+	padding-bottom: 0;
+    }
+    section#api-how {
+	background-color: #000;
+	p.columns {
+	    color: #4D4C4C;
+	}
+    }
+    section#api-endpoints {
+	background-color: $etyssa-blue;
+	.circular {
+	    width                 : 300px;
+	    height                : 300px;
+	    border-radius         : 150px;
+	    -webkit-border-radius : 150px;
+	    -moz-border-radius    : 150px;
+	    background            : url("/images/datacenter-thurdays.png") no-repeat;
+	}
     }
 }
 
 .overview.container {
+    height: 100%;
     .columns.large-10 {
 	padding-left : 0;
 	display: block;
@@ -236,13 +264,13 @@ div.about.row .columns {
 footer {
   width: 100%;
   margin: 0;
-  position: relative;
+  /* position: relative;*/
   min-height: 150px;
-  bottom: 0;
+  bottom: 0px;
   background-color: #2F2F2F;
   color: #c6c6c6;
   p {
       font-size: 80%;
   }
-
+}
 // EOF
