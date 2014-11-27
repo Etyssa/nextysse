@@ -31,6 +31,6 @@ In order to test and improve our new API, here is an implementation of our main 
     # EOF
 
 ## Contributors
-* doud
-* yéyé
+* vied12
+* tinanimo
 * smonff
