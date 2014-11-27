@@ -5,6 +5,7 @@
 $top-image: url("/images/logo.png");
 $etyssa-blue: #04a2c5;
 $etyssa-orange: #f68712;
+$etyssa-grey: #bbb;
 
 nav.top-bar {
   z-index: 7;
@@ -217,6 +218,10 @@ div.about.row .columns {
 	background            : url("/images/doud.jpg") no-repeat;
     }
 
+    .circular.seychelles {
+	background            : url("/images/seychellen-sonnenuntergang.png") no-repeat;
+    }
+
     .circular img {
 	opacity: 0;
 	width: 150px;
@@ -251,6 +256,31 @@ div.about.row .columns {
 	    background            : url("/images/datacenter-thurdays.png") no-repeat;
 	}
     }
+
+    section#why {
+	.circular {
+	    width                 : 300px;
+	    height                : 300px;
+	    border-radius         : 150px;
+	    -webkit-border-radius : 150px;
+	    -moz-border-radius    : 150px;
+	    background            : url("/images/all.png") no-repeat;
+	}
+    }
+
+    section#modern,
+    section#why,
+    section#freedom {
+	background-color: $etyssa-grey;
+    }
+
+    section#team {
+	img {
+	    display: inline;
+	    width: 49%;
+	}
+    }
+
 }
 
 .overview.container {
