@@ -7,12 +7,11 @@ In order to test and improve our new API, here is an implementation of our main 
 
 ## Installation
 
-    npm install 
-    bower install
+    make install
 
 ## Run the server
 
-    grunt serve
+    make run
 
 ## Deploy to scriptx.bitbucket.org
 
@@ -31,6 +30,8 @@ In order to test and improve our new API, here is an implementation of our main 
     # EOF
 
 ## Contributors
+```
 * vied12
 * tinanimo
 * smonff
+```
