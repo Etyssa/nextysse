@@ -1,0 +1,123 @@
+<div class="Search" relayout-search-view>
+
+  <leaflet
+    tiles    = "tiles"
+    defaults = "defaults"
+    markers  = "markers">
+  </leaflet>
+  
+  <div class="results">
+    <h1>Parcourir les annonces</h1>
+    <div class="filter-box">
+      <form
+        name = "searchForm">
+        <select
+          ng-model   = "search_params.selected_category"
+          ng-options = 'cat as (cat.title + " (" + cat.service_count + ")") for cat in categories'>
+          <option value="">-- Choisissez une catégorie --</option>
+        </select>
+        <div ng-if="search_params.selected_category">
+          <dl class="sub-nav">
+            <dt>Filtres:</dt>
+            <dd ng-class="{'active' : search_params.motivations_selected.length == search_params.selected_category.motivations.length }">
+              <a href="#" ng-click="toggleAllFilter()"><i class="fa fa-tag"></i>tout</a>
+            </dd>
+            <dd
+              ng-repeat = "motivation in search_params.selected_category.motivations"
+              ng-click  = "toggleMotivation(motivation)"
+              ng-class  = "{'active': isMotivationSelected(motivation) }">
+              <a href="#"><i class="fa fa-tag"></i><span ng-bind-html="motivation.label"></span></a>
+            </dd>
+          </dl>
+        </div>  
+      </form>
+    </div>
+    <div ng-show="search_params.selected_category == undefined">
+      <div class="icon-bar four-up">
+        <a class="item" ng-click="search_params.selected_category = getCategorie('sports')">
+            <img src="images/Basketball.png" > 
+            <label>Sports</label>
+        </a>
+        <a class="item" ng-click="search_params.selected_category = getCategorie('ressources')">
+            <img src="images/Recycle-Bin.png" > 
+            <label>Recyclerie</label>
+        </a>
+        <a class="item" ng-click="search_params.selected_category = getCategorie('art')">
+            <img src="images/Color.png" > 
+            <label>Arts & loisirs</label>
+        </a>
+        <a class="item" ng-click="search_params.selected_category = getCategorie('school')">
+            <img src="images/Library-Books.png" > 
+            <label>Cours et soutien scolaire</label>
+        </a>
+      </div>
+      <h2>
+        Dernières annonces
+      </h2>
+      <ul class="results_list">
+        <li 
+          ng-repeat = "result in results" 
+          id        = "entry_{{result.id}}"
+          ng-class  = "{'visited': visited_results[result.id], 'active': result.id == entry_selected.id, favorited: favorited_results[result.id]}">
+          <a
+            ng-click     = "focusOnEntry(result)"
+            ng-bind-html = "result.smart_title" ></a>
+        </li>
+      </ul>
+    </div>
+    <div ng-show="search_params.selected_category != undefined">
+      <h2>
+        Annonces
+        <small ng-if="results == undefined || results.length == 0">aucun resultat</small>
+        <small ng-if="results.length > 0">{{ results.length }} resultats</small>
+      </h2>
+      <div class="favorite-switch switch round small">
+        <span>Ne montrer que les favoris</span>
+        <input id="FavRadioSwitch" type="checkbox" ng-model="favorite_mode">
+        <label for="FavRadioSwitch"></label>
+      </div>
+      <ul class="results_list">
+        <li 
+          ng-repeat = "result in results" 
+          id        = "entry_{{result.id}}"
+          ng-class  = "{'visited': visited_results[result.id], 'active': result.id == entry_selected.id, favorited: favorited_results[result.id]}">
+          <a
+            ng-click     = "focusOnEntry(result)"
+            ng-bind-html = "result.smart_title" ></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="details" ng-show="entry_selected">
+    <a class="close-details" ng-click="entry_selected = undefined">&#215;</a>
+    <div class="details__navigation">
+      <a
+        ng-click = "toggleFavorite(entry_selected)">
+          <i
+            class    = "fa"
+            ng-class = "favorited_results[entry_selected.id]? 'fa-star':'fa-star-o'">
+          </i>
+      </a>
+      <a>
+        <i 
+          class    = "fa" 
+          ng-class = "contact_form.show? 'fa-envelope':'fa-envelope-o'"
+          ng-click = "contact_form.show = !contact_form.show">
+        </i>
+      </a>
+      <a 
+        class    = "previous-details"
+        ng-class = "{disabled: !hasPreviousEntry()}"
+        ng-click = "previousEntry()"><i class="fa fa-chevron-left"></i>
+      </a>
+      <a
+        class    = "next-details"
+        ng-class = "{disabled: !hasNextEntry()}"
+        ng-click = "nextEntry()"><i class="fa fa-chevron-right"></i>
+</a>
+    </div>
+    <ng-include src="'scripts/views/entry.html'"></ng-include>
+  </div>
+
+</div>
