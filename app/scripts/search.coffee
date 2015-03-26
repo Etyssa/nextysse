@@ -129,7 +129,8 @@ angular.module('seminaire2014App')
       # map
       angular.extend $scope,
         tiles:
-          url: "https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png"
+          #url: "https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png"
+          url: "http://openmapsurfer.uni-hd.de/tiles/roads/x={x}&y={y}&z={z}"
         defaults:
           scrollWheelZoom : false
         markers : {}
